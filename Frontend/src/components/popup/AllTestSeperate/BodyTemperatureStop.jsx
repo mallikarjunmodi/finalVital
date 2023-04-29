@@ -17,7 +17,7 @@ function BodyTemperatureStop(props){
               }}
             />
           </div>
-          <button className="bd-stop-button button">Stop</button>
+          <button className="bd-stop-button button" onClick={props.onStopClick }>Stop</button>
           <div className="bd-stop-container2">
           <CircularProgressBar data={props.data} value={40} />
             <span className="bd-stop-text">
@@ -25,14 +25,14 @@ function BodyTemperatureStop(props){
               <br></br>
             </span>
             <span className="bd-stop-text3">{props.sp02_reading11}</span>
-            <div className="temp__division__bar">
+            {/* <div className="temp__division__bar">
               <span
                 dangerouslySetInnerHTML={{
                   __html:
                     '<svg width="2" height="199" viewBox="0 0 2 199" fill="none" xmlns="http://www.w3.org/2000/svg">\r\n    <path d="M1 0V31.5M1 199V169.5" stroke="#313665" />\r\n</svg>',
                 }}
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

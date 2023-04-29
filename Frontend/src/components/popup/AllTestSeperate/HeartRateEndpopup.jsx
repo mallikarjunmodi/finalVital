@@ -16,13 +16,13 @@ function HeartRateEndpopup(props){
               }}
             />
           </div>
-          <button className="sp-o2stop-button button">
+          <button className="sp-o2stop-button button" onClick={props.onStopClick }>
             Stop
           </button>
           <div className="sp-o2stop-container2">
           <CircularProgressBar data={props.data} value={40} />
-            <span className="sp-o2stop-text">{props.HR_reading}</span>
-            <span className="sp-o2stop-text1">
+          <span className="sp-o2stop-text">{props.HR_reading}</span>
+          <span className="sp-o2stop-text1">
               <br></br>
               <span>SpO2</span>
               <br></br>

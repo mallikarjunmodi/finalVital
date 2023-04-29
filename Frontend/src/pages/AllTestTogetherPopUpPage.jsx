@@ -6,21 +6,30 @@ import { useEffect, useState } from "react";
 import Bp_1 from "../components/popup/assets/BP_1.png";
 import Bp_2 from "../components/popup/assets/BP_2.svg";
 import Bp_3 from "../components/popup/assets/BP_3.svg";
+import Bp_4 from "../components/popup/assets/BP_4.svg";
+import Bp_5 from "../components/popup/assets/BP_5.svg";
 import Bp_6 from "../components/popup/assets/BP_6.svg";
 import Bp_7 from "../components/popup/assets/BP_7.svg";
+
 import BpStartPopUp from "../components/popup/AllTestSeperate/BpStart";
 import BloodPressureFetch from "../components/popup/AllTestSeperate/BloodPressureStop";
 import BloodPressureReading from "../components/popup/AllTestSeperate/BpReadingsPop";
+import BPSysAndDiaResult from "../components/popup/AllTestTogether/BPSysAndDiaResult";
 
 
 import HR_1 from "../components/popup/assets/HR_1.svg";
 import HR_2 from "../components/popup/assets/HR_2.svg";
 import HR_3 from "../components/popup/assets/HR_3.svg";
 import HR_Fetch from "../components/popup/AllTestSeperate/HeartRateEndpopup";
+import HRCircularBarResult from "../components/popup/AllTestTogether/HRCircularBarResult";
 
 import BT_1 from "../components/popup/assets/BT_1.svg";
 import BT_2 from "../components/popup/assets/BT_2.svg";
+import BT_3 from "../components/popup/assets/BT_3.svg";
+import BT_5 from "../components/popup/assets/BT_5.svg";
 import BT_Fetch from "../components/popup/AllTestSeperate/BodyTemperatureStop";
+import CircularBarResult from "../components/popup/AllTestTogether/CircularBarResult";
+
 
 import DS_1 from "../components/popup/assets/DS_1.svg";
 import DS_2 from "../components/popup/assets/DS_2.svg";
@@ -30,6 +39,8 @@ import DS_Heart from "../components/popup/assets/DS_Heart.svg";
 // import DS_4 from "../components/popup/assets/DS_4.svg";
 import DS_5 from "../components/popup/assets/DS_5.svg";
 import DSPopUpFrame from "../components/popup/AllTestTogether/DigitalStethoscopePopUp";
+import DSSysAndDiaResult from "../components/popup/AllTestTogether/DSSysAndDiaResult";
+
 
 import PopUpFrame from "../components/popup/AllTestTogether/PopUpFrame";
 import PopUpFrame2 from "../components/popup/AllTestTogether/PopUpFrame2";
@@ -51,8 +62,45 @@ import useLocalStorageRef from "../hooks/LocalStorage";
 const socket = io.connect("http://localhost:5000");
 
 const AllTestTogetherPopUps = (props) => {
-  const [bpData, setBpData] = useState([]);
-  const [popUpSequence, setPopupSequence] = useState("DS_1");
+  const [bpData, setBpData] = useState({ sys: 120, dia: 80, pulse: 69 });   // setData({ ...data, sys: event.target.value });
+  const [btData, setBtData] = useState(96);
+  const [data, setData] = useState();
+  const [hrData, setHrData] = useState({ sys: 120, dia: 80, pulse: 69 }); 
+  const [popUpSequence, setPopupSequence] = useState("HR_1");
+
+
+  function SensorStop(text) {
+    socket.emit(text, { message: "Stop" });
+  }
+  
+  function SensorRead(callback,text) {
+    console.log(callback);
+    socket.emit(text[0], { message: "Start" });
+  
+    socket.on(text[1], (data) => {
+      console.log("data: ", data.data);
+  
+      if (data.data.state === "end") {
+        console.log("backsend data", data.data);
+        let sensorData = data.data;
+        api
+          .post(sendBpSensorValue, sensorData, {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "*/*",
+            },
+          })
+          .then((res) => {
+            console.log(res.status, res.data);
+          })
+          .catch((err) => new Error(err));
+      }
+      callback(data.data);
+    });
+  }
+  
+
+
 
 
 
@@ -89,8 +137,74 @@ const AllTestTogetherPopUps = (props) => {
         image_main={BT_2}
         onExitClick={props.onExitClick}
         onContinueClick={() => {
-          setPopupSequence("BT_FETCH");
+          setPopupSequence("BT_3");
         }}
+      />
+    );
+    else if (popUpSequence === "BT_3")
+    return (
+      <PopUpFrame2
+        heading={"How to record Body Temperature"}
+        instruction={
+          "Remove the thermometer from your mouth, armpit, or rectum, and read the temperature."
+        }
+        instruction2={
+          "Normal body temperature is usually between 97°F (36.1°C) and 99°F (37.2°C)."
+        }
+        button1={"Next"}
+        image_main={BT_3}
+        onExitClick={props.onExitClick}
+        onContinueClick={() => {
+          setPopupSequence("BT_4");
+        }}
+      />
+    );
+     else if (popUpSequence === "BT_4")
+    return (
+      <PopUpFrame2
+        heading={"How to record Body Temperature"}
+        instruction={
+          "If your temperature is above normal, take note of any other symptoms you may be experiencing, such as a cough, sore throat, or body aches. "
+        }
+        instruction2={
+          "This may indicate that you have a fever and should seek medical attention."
+        }
+        button1={"Next"}
+        image_main={BT_3}
+        onExitClick={props.onExitClick}
+        onContinueClick={() => {
+          setPopupSequence("BT_5");
+        }}
+      />
+    );
+    else if (popUpSequence === "BT_5")
+    return (
+      <PopUpFrame2
+        heading={"How to record Body Temperature"}
+        instruction={
+          "Clean the thermometer with soap and water or rubbing alcohol before putting it away."
+        }
+        instruction2={
+          "Store it in a safe and dry place until you need to use it again."
+        }
+        button1={"Start test"}
+        image_main={BT_5}
+        onExitClick={props.onExitClick}
+        onContinueClick={() => {
+          setPopupSequence("BT_FETCH");
+          
+          SensorRead((data)=>{
+            setBtData(data);
+             if(data.state==="end")
+             {
+              setPopupSequence("BT_Reading")
+             }
+              console.log("btData",btData)}
+
+              ,["send_message_bt","bt_data"]
+              );
+        }
+        }
       />
     );
     else if (popUpSequence === "BT_FETCH")
@@ -100,8 +214,22 @@ const AllTestTogetherPopUps = (props) => {
         data={bpData}
         onExitClick={props.onExitClick}
         onContinueClick={props.onContinueClick}
+        onStopClick={() => {
+         
+            SensorStop("send_message_bt");
+            setPopupSequence("BT_Reading");
+          }}
       />
     ); 
+    else if (popUpSequence === "BT_Reading")
+    return (
+      <CircularBarResult
+      sign="℉"
+      data={btData}
+      onExitClick={props.onExitClick}
+      onContinueClick={props.onContinueClick}
+      />
+    );
     
     //Digital Stethoscope 
    else if (popUpSequence === "DS_1")
@@ -240,7 +368,11 @@ const AllTestTogetherPopUps = (props) => {
         setinitateTestPopUp={'wear device and press "start".'}
         data={bpData}
         onExitClick={props.onExitClick}
-        onContinueClick={props.onContinueClick}
+       
+        onStopClick={() => {
+            SensorStop("send_message_bt");
+            setPopupSequence("Bt_Reading");
+          }}
       />
     );
 
@@ -300,7 +432,7 @@ const AllTestTogetherPopUps = (props) => {
           "As the cuff inflates, you may feel some pressure on your arm, but it shouldn't be uncomfortable."
         }
         button1={"Next"}
-        image_main={Bp_2}
+        image_main={Bp_4}
         onExitClick={props.onExitClick}
         onContinueClick={() => {
           setPopupSequence("BP_5");
@@ -314,85 +446,106 @@ const AllTestTogetherPopUps = (props) => {
         instruction={
           "Wait for the monitor to deflate the cuff, and record your systolic and diastolic blood pressure readings."
         }
-        button1={"Next"}
-        image_main={Bp_2}
+        button1={"Start test"}
+        image_main={Bp_5}
         onExitClick={props.onExitClick}
         onContinueClick={() => {
-          setPopupSequence("BP_6");
+          setPopupSequence("BP_Fetch");
+          SensorRead((data)=>{
+            setBpData(data);
+             if(data.state==="end")
+             {
+              setPopupSequence("BP_Reading")
+             }
+              console.log("bpData",bpData)}
+
+              ,["send_message_bp","bp_data"]
+              );
         }}
       />
     );
-  else if (popUpSequence === "BP_6")
-    return (
-      <PopUpFrame
-        heading={"How to record Blood Pressure"}
-        instruction={
-          "Sit down in a quiet, comfortable place.  Make sure your feet are flat on the ground and your arm is supported at heart level."
-        }
-        button1={"Next"}
-        image_main={Bp_6}
-        onExitClick={props.onExitClick}
-        onContinueClick={() => {
-          setPopupSequence("BP_7");
-        }}
-      />
-    );
-  else if (popUpSequence === "BP_7")
-    return (
-      <PopUpFrame
-        heading={"How to record Blood Pressure"}
-        instruction={
-          "Press the start button on the blood pressure monitor and wait for it to inflate the cuff."
-        }
-        button1={"Next"}
-        image_main={Bp_7}
-        onExitClick={props.onExitClick}
-        onContinueClick={() => {
-          setPopupSequence("BP_8");
-        }}
-      />
-    );
-  else if (popUpSequence === "BP_8")
-    return (
-      <PopUpFrame
-        heading={"How to record Blood Pressure"}
-        instruction={
-          " As the cuff inflates, you may feel some pressure on your arm, but it shouldn't be uncomfortable."
-        }
-        button1={"Next"}
-        image_main={Bp_7}
-        onExitClick={props.onExitClick}
-        onContinueClick={() => {
-          setPopupSequence("BP_9");
-        }}
-      />
-    );
-  else if (popUpSequence === "BP_9")
-    return (
-      <PopUpFrame
-        heading={"How to record Blood Pressure"}
-        instruction={
-          " Wait for the monitor to deflate the cuff, and record your systolic and diastolic blood pressure readings."
-        }
-        button1={"Start"}
-        image_main={Bp_7}
-        onExitClick={props.onExitClick}
-        onContinueClick={() => {
-          setPopupSequence("BP_FETCH");
-        }}
-      />
-    );
-  else if (popUpSequence === "BP_FETCH")
-    return (
-      <BloodPressureFetch
-        setinitateTestPopUp={'wear device and press "start".'}
-        data={bpData}
-        onExitClick={props.onExitClick}
-        onStopClick={() => {
-          SensorStop();
-        }}
-      />
-    );
+    // else if (popUpSequence === "BP_START") return(<BpStartPopUp setinitateTestPopUp={"wear device and press \"start\"."} onExitClick={props.onExitClick} onContinueClick={()=>{setPopupSequence("BP_FETCH");SensorRead((data)=>{setBpData(data); if(data.state==="end"){setPopupSequence("BP_READING")} console.log("bpData",bpData)} ,"");}} />);
+    else if (popUpSequence === "BP_Fetch")
+      return (
+        <BloodPressureFetch
+          setinitateTestPopUp={'wear device and press "start".'}
+          data={bpData}
+          onExitClick={props.onExitClick}
+          onStopClick={() => {
+            SensorStop("send_message_bp");
+            setPopupSequence("BP_Reading");
+          }}
+        />
+      );
+
+      else if (popUpSequence === "BP_Reading")
+      return (
+        <BPSysAndDiaResult  data={bpData}/>
+      );  
+      
+
+
+
+    // else if (popUpSequence === "BP_6")
+    //   return (
+    //     <PopUpFrame
+    //       heading={"How to record Blood Pressure"}
+    //       instruction={
+    //         " As the cuff inflates, you may feel some pressure on your arm, but it shouldn't be uncomfortable."
+    //       }
+    //       button1={"Next"}
+    //       image_main={Bp_7}
+    //       onExitClick={props.onExitClick}
+    //       onContinueClick={() => {
+    //         setPopupSequence("BP_Fetch");
+    //       }}
+    //     />
+    //   );
+  // else if (popUpSequence === "BP_6")
+  //   return (
+  //     <PopUpFrame
+  //       heading={"How to record Blood Pressure"}
+  //       instruction={
+  //         "Sit down in a quiet, comfortable place.  Make sure your feet are flat on the ground and your arm is supported at heart level."
+  //       }
+  //       button1={"Next"}
+  //       image_main={Bp_6}
+  //       onExitClick={props.onExitClick}
+  //       onContinueClick={() => {
+  //         setPopupSequence("BP_7");
+  //       }}
+  //     />
+  //   );
+  // else if (popUpSequence === "BP_7")
+  //   return (
+  //     <PopUpFrame
+  //       heading={"How to record Blood Pressure"}
+  //       instruction={
+  //         "Press the start button on the blood pressure monitor and wait for it to inflate the cuff."
+  //       }
+  //       button1={"Next"}
+  //       image_main={Bp_7}
+  //       onExitClick={props.onExitClick}
+  //       onContinueClick={() => {
+  //         setPopupSequence("BP_8");
+  //       }}
+  //     />
+  //   );
+  // else if (popUpSequence === "BP_9")
+  //   return (
+  //     <PopUpFrame
+  //       heading={"How to record Blood Pressure"}
+  //       instruction={
+  //         " Wait for the monitor to deflate the cuff, and record your systolic and diastolic blood pressure readings."
+  //       }
+  //       button1={"Start"}
+  //       image_main={Bp_7}
+  //       onExitClick={props.onExitClick}
+  //       onContinueClick={() => {
+  //         setPopupSequence("BP_FETCH");
+  //       }}
+  //     />
+  //   );
   else if (popUpSequence === "BP_READING")
     return (
       <BloodPressureReading
@@ -402,7 +555,6 @@ const AllTestTogetherPopUps = (props) => {
         onContinueClick={props.onContinueClick}
       />
     );
-  // else if (popUpSequence === "BP_START") return(<BpStartPopUp setinitateTestPopUp={"wear device and press \"start\"."} onExitClick={props.onExitClick} onContinueClick={()=>{setPopupSequence("BP_FETCH");SensorRead((data)=>{setBpData(data); if(data.state==="end"){setPopupSequence("BP_READING")} console.log("bpData",bpData)});}} />);
 
 
   //Heart Rate pop up begins
@@ -454,6 +606,17 @@ const AllTestTogetherPopUps = (props) => {
         onExitClick={props.onExitClick}
         onContinueClick={() => {
           setPopupSequence("HR_FETCH");
+          SensorRead((data)=>{
+            setHrData(data);
+             if(data.state==="end")
+             {
+              setPopupSequence("HR_Reading")
+             }
+              console.log("hrData",hrData)}
+
+              ,["send_message_hr","hr_data"]
+              );
+        
         }}
       />
     );
@@ -463,40 +626,26 @@ const AllTestTogetherPopUps = (props) => {
         setinitateTestPopUp={'wear device and press "start".'}
         data={bpData}
         onExitClick={props.onExitClick}
-        onContinueClick={props.onContinueClick}
+        onStopClick={() => {
+            SensorStop("send_message_hr");
+            setPopupSequence("HR_Result");
+          }}
       />
     );  
+    else if (popUpSequence === "HR_Result")
+      return (
+        <HRCircularBarResult  data={hrData}/>
+      );
+    else if (popUpSequence === "HR_Reading")
+      return (
+        <BPSysAndDiaResult  data={hrData}/>
+      ); 
+     
+  
+
+
 };
 
-function SensorStop() {
-  socket.emit("send_message_Bp", { message: "Stop" });
-}
-
-function SensorRead(callback) {
-  console.log(callback);
-  socket.emit("send_message_bp", { message: "Start" });
-
-  socket.on("bp_data", (data) => {
-    console.log("data: ", data.data);
-
-    if (data.data.state === "end") {
-      console.log("backsend data", data.data);
-      let sensorData = data.data;
-      api
-        .post(sendBpSensorValue, sensorData, {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "*/*",
-          },
-        })
-        .then((res) => {
-          console.log(res.status, res.data);
-        })
-        .catch((err) => new Error(err));
-    }
-    callback(data.data);
-  });
-}
 
 function AllTestTogetherPopUpPage() {
   const [user, setUser, removeUser] = useLocalStorageRef("user");

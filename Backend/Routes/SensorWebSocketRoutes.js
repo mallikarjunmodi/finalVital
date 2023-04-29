@@ -21,7 +21,7 @@ export default function(httpServer)
       methods: ["GET", "POST"],
     }
   })
-  
+  //blood pressure
   io.on("connection",(socket)=>{
     //console.log(`User Connected: ${socket.id}`);
   //bp sensor
@@ -65,19 +65,19 @@ export default function(httpServer)
 
     })
  // temperature sensor
-    socket.on("send_message_tp",(data)=>{
+    socket.on("send_message_bt",(data)=>{
       console.log(data.message);
       if(data.message==="Start")
       {
         tpSensor.onSensor((sensorData)=>{
-          socket.emit("tp_data",{data:sensorData})
+          socket.emit("bt_data",{data:sensorData})
         })
        
       }
       if(data.message==="Stop")
       {
         tpSensor.offSensor((sensorData)=>{
-          socket.emit("tp_data",{data:"Sensor stopped"})
+          socket.emit("bt_data",{data:"Sensor stopped"})
         })
       }
 

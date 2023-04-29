@@ -22,7 +22,7 @@ class TemperatureSensor {
   }
   onSensor(callback){
       this.initateSensor();
-      console.log("onSensorgl");
+      console.log("onSensortp");
      
   } 
 
