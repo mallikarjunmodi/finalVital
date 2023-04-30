@@ -29,10 +29,13 @@ const BTFrame3 = (props) => {
           alt={props.image_alt}
           className="-pinstruction-image"
         /> */}
-        <div className="bt-frame-3-image-green"> </div>
-       <div>
+        <span className={props.isgreen ? "bt-frame-3-image-green-text1":"bt-frame-3-image-red-text1"}>{props.isgreen ? 98:108}</span>
+        <span className={props.isgreen ? "bt-frame-3-image-green-text2":"bt-frame-3-image-red-text2"}>℉</span>
+        <span className="bt-frame-3-image-green-text3">Body Temperature</span>
+        <div className={props.isgreen ? 'bt-frame-3-image-green':'bt-frame-3-image-red'}> </div>
+       <span>
       
-       </div>
+       </span>
 
         <button className="-pinstruction-button3 button">
           Skip
@@ -50,6 +53,88 @@ const BTFrame3 = (props) => {
       </div>
       <style jsx>
         {`
+          .bt-frame-3-image-red-text1{
+            position: absolute;
+            width: 100px;
+            height: 82px;
+            left: 668px;
+            top: 165px;
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 60px;
+            line-height: 82px;
+            /* identical to box height */
+            color: #DA5555;
+            z-index:10;
+          }
+           .bt-frame-3-image-red-text2
+           {
+            position: absolute;
+            width: 15px;
+            height: 19px;
+            left: 778px;
+            top: 214px;
+            z-index:10;
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 19px;
+
+            color: #DA5555;
+           }
+           .bt-frame-3-image-red{
+            position: absolute;
+            width: 431px;
+            height: 209px;
+            left: 512px;
+            top: 89px;
+            background: #FDF7F7;
+            border-radius: 10px 0px 0px 10px;
+           }
+           .bt-frame-3-image-green-text3
+           {
+            position: absolute;
+            width: 119px;
+            height: 19px;
+            left: 668px;
+            top: 138px;
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 19px;
+            color: #727272;
+            z-index:10;
+           }
+           .bt-frame-3-image-green-text2{
+            position: absolute;
+            width: 15px;
+            height: 19px;
+            left: 765px;
+            top: 214px;
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 19px;
+            color: #1AB58F;
+           }
+           .bt-frame-3-image-green-text1
+           {
+            position: absolute;
+            width: 74px;
+            height: 82px;
+            left: 684px;
+            top: 165px;
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 60px;
+            line-height: 82px;
+            color: #1AB58F;
+           }
            .bt-frame-3-image-green
            {
             position: absolute;

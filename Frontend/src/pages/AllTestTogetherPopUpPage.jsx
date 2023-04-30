@@ -28,6 +28,7 @@ import BT_1 from "../components/popup/assets/BT_1.svg";
 import BT_2 from "../components/popup/assets/BT_2.svg";
 import BT_3 from "../components/popup/assets/BT_3.svg";
 import BT_5 from "../components/popup/assets/BT_5.svg";
+import BTFrame3 from "../components/popup/AllTestTogether/BTFrame3";
 import BT_Fetch from "../components/popup/AllTestSeperate/BodyTemperatureStop";
 import CircularBarResult from "../components/popup/AllTestTogether/CircularBarResult";
 
@@ -145,7 +146,8 @@ const AllTestTogetherPopUps = (props) => {
     );
     else if (popUpSequence === "BT_3")
     return (
-      <PopUpFrame2
+      <BTFrame3 
+        isgreen={true}
         heading={"How to record Body Temperature"}
         instruction={
           "Remove the thermometer from your mouth, armpit, or rectum, and read the temperature."
@@ -160,10 +162,12 @@ const AllTestTogetherPopUps = (props) => {
           setPopupSequence("BT_4");
         }}
       />
+
     );
      else if (popUpSequence === "BT_4")
     return (
-      <PopUpFrame2
+      <BTFrame3 
+        isgreen={false}
         heading={"How to record Body Temperature"}
         instruction={
           "If your temperature is above normal, take note of any other symptoms you may be experiencing, such as a cough, sore throat, or body aches. "
