@@ -22,6 +22,7 @@ import HR_2 from "../components/popup/assets/HR_2.svg";
 import HR_3 from "../components/popup/assets/HR_3.svg";
 import HR_Fetch from "../components/popup/AllTestSeperate/HeartRateEndpopup";
 import HRCircularBarResult from "../components/popup/AllTestTogether/HRCircularBarResult";
+import HrFinalReading from "../components/popup/AllTestTogether/HrFinalResult";
 
 import BT_1 from "../components/popup/assets/BT_1.svg";
 import BT_2 from "../components/popup/assets/BT_2.svg";
@@ -40,7 +41,7 @@ import DS_Heart from "../components/popup/assets/DS_Heart.svg";
 import DS_5 from "../components/popup/assets/DS_5.svg";
 import DSPopUpFrame from "../components/popup/AllTestTogether/DigitalStethoscopePopUp";
 import DSSysAndDiaResult from "../components/popup/AllTestTogether/DSSysAndDiaResult";
-
+import DsCircularBar from "../components/popup/AllTestTogether/DsCircularBar";
 
 import PopUpFrame from "../components/popup/AllTestTogether/PopUpFrame";
 import PopUpFrame2 from "../components/popup/AllTestTogether/PopUpFrame2";
@@ -64,6 +65,7 @@ const socket = io.connect("http://localhost:5000");
 const AllTestTogetherPopUps = (props) => {
   const [bpData, setBpData] = useState({ sys: 120, dia: 80, pulse: 69 });   // setData({ ...data, sys: event.target.value });
   const [btData, setBtData] = useState(96);
+  const [dsData, setDsData] = useState({ sys: 120, dia: 80,pulse: 69});
   const [data, setData] = useState();
   const [hrData, setHrData] = useState({ sys: 120, dia: 80, pulse: 69 }); 
   const [popUpSequence, setPopupSequence] = useState("HR_1");
@@ -230,6 +232,7 @@ const AllTestTogetherPopUps = (props) => {
       onContinueClick={props.onContinueClick}
       />
     );
+
     
     //Digital Stethoscope 
    else if (popUpSequence === "DS_1")
@@ -353,28 +356,52 @@ const AllTestTogetherPopUps = (props) => {
           "Clean the chest piece and ear tips with alcohol wipes or disinfectant spray after each use."
         }
        
-        button1={"Start"}
+        button1={"Start test"}
         image_main={DS_5}
         onExitClick={props.onExitClick}
         onContinueClick={() => {
-          setPopupSequence("DS_6");
+          setPopupSequence("DS_Reading");
+          SensorRead((data)=>{
+            setDsData(data);
+             if(data.state==="end")
+             {
+              setPopupSequence("DS_Result")
+             }
+              console.log("dsData",bpData)}
+
+              ,["send_message_ds","ds_data"]
+              );
         }}
       />
     );
-    
-    else if (popUpSequence === "BT_FETCH")
+    else if (popUpSequence === "DS_Reading")
     return (
-      <BT_Fetch
-        setinitateTestPopUp={'wear device and press "start".'}
-        data={bpData}
+      <DsCircularBar
+     
         onExitClick={props.onExitClick}
-       
+        
         onStopClick={() => {
-            SensorStop("send_message_bt");
-            setPopupSequence("Bt_Reading");
+            SensorStop("send_message_ds");
+            setPopupSequence("DS_Result");
           }}
       />
     );
+    else if (popUpSequence === "DS_Result")
+    return (
+      <DSSysAndDiaResult
+     
+        onExitClick={props.onExitClick}
+        data={dsData}
+        onStopClick={() => {
+            SensorStop("send_message_ds");
+            setPopupSequence("DS_Reading");
+          }}
+      />
+    );
+
+
+    
+ 
 
 
 
@@ -472,11 +499,25 @@ const AllTestTogetherPopUps = (props) => {
           data={bpData}
           onExitClick={props.onExitClick}
           onStopClick={() => {
+            console.log("bp here")
             SensorStop("send_message_bp");
-            setPopupSequence("BP_Reading");
+            setPopupSequence("BT_1");
           }}
         />
       );
+      else if (popUpSequence === "BP_Result")
+      return (<>
+           <h1>hi</h1>
+        <CircularBarResult
+            sign="mm Hg"
+            data={bpData}
+            onExitClick={props.onExitClick}
+            onContinueClick={
+              setPopupSequence("BP_Fetch")
+            }
+         />
+      </>
+      ); 
 
       else if (popUpSequence === "BP_Reading")
       return (
@@ -634,11 +675,15 @@ const AllTestTogetherPopUps = (props) => {
     );  
     else if (popUpSequence === "HR_Result")
       return (
-        <HRCircularBarResult  data={hrData}/>
+        <HRCircularBarResult  data={hrData}  
+        onExitClick={props.onExitClick}
+        onContinueClick={() => {
+          setPopupSequence("BP_1");
+        }}/>
       );
     else if (popUpSequence === "HR_Reading")
       return (
-        <BPSysAndDiaResult  data={hrData}/>
+        <HrFinalReading  data={hrData}/>
       ); 
      
   

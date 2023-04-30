@@ -6,7 +6,7 @@ import TryAgain from "../assets/tryagain.svg";
 import Header from '../../HeaderBar';
 import volume from "../assets/volume.svg"
 
-const DSSysAndDiaResult = (props) => {
+const AllTestResult = (props) => {
   return (
     <>
       <div className="stethescopeinput-container">
@@ -25,19 +25,20 @@ const DSSysAndDiaResult = (props) => {
           <button className="stethescopeinput-button2 button">
                   Contact doctor
           </button>
-        
-          <span className="stethescopeinput-text02">
-            Point 02 of the inference from the report.
-          </span>
-          <span className="stethescopeinput-text03">Pulse</span>
-          <span className="stethescopeinput-text04">Diastolic</span>
-          <span className="stethescopeinput-text05">/min</span>
-          <span className="stethescopeinput-text06">mm Hg</span>
-          <span className="stethescopeinput-text07">mm Hg</span>
-          <span className="stethescopeinput-text08">
-            <span>{props.data.pulse}</span>
-            <br></br>
-          </span>
+          <span className="hr-header-text">Test successfully taken! </span>
+          <span className="hr-body-text">Continue to the next test to get your full vitals.</span>
+         <button className="stethescopeinput-button-stop">
+         </button>
+          <span className="stethescopeinput-text-stop"> Stop test</span>
+         <button className="stethescopeinput-button-continue">
+         </button>
+           <span className="stethescopeinput-text-continue"> Continue</span>
+          
+          <span className="stethescopeinput-text04">Heart Rate</span>
+          
+          <span className="stethescopeinput-text06">BPM</span>
+          <span className="stethescopeinput-text07">%</span>
+         
           <span className="stethescopeinput-text11">
             <span>{props.data.dia}</span>
             <br></br>
@@ -46,7 +47,7 @@ const DSSysAndDiaResult = (props) => {
             <span>{props.data.sys}</span>
             <br></br>
           </span>
-          <span className="stethescopeinput-text17">Systolic</span>
+          <span className="stethescopeinput-text17">SpO2</span>
           {/* <img
             src="/playground_assets/rectangle-300h.png"
             alt="image"
@@ -75,20 +76,109 @@ const DSSysAndDiaResult = (props) => {
             alt="image"
             className="stethescopeinput-image4"
           />
-         <div className="stethescopedot"></div>
+         
         </div>
       </div>
       <style jsx>
         {`
-          .stethescopedot{
+          .hr-body-text{
             position: absolute;
-            width: 8px;
-            height: 8px;
-            left: 342px;
-            top: 491px;
-            border-radius:4px;
-            background: #1AB58F;
+            width: 513px;
+            height: 33px;
+            left: 251px;
+            top: 158px;
+
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 33px;
+            /* identical to box height */
+
+            text-align: center;
+
+            color: #125873;
           }
+          .hr-header-text{
+            position: absolute;
+            width: 281px;
+            height: 33px;
+            left: 367px;
+            top: 109px;
+
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 33px;
+            /* identical to box height */
+
+            text-align: center;
+
+            color: #1AB58F;
+          }
+          .stethescopeinput-text-continue{
+            position: absolute;
+            width: 181.57px;
+            height: 24px;
+            left: 545.09px;
+            top: 508px;
+
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 22px;
+            text-align: center;
+
+            color: #FFFFFF;
+          }
+          .stethescopeinput-text-stop{
+            position: absolute;
+            width: 114px;
+            height: 22px;
+            left: 329px;
+            top: 509px;
+
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 22px;
+            /* identical to box height */
+
+            text-align: center;
+
+            color: #1AB58F;
+          }
+          .stethescopeinput-button-continue
+          {
+            box-sizing: border-box;
+            position: absolute;
+            width: 240px;
+            height: 54px;
+            left: 519px;
+            top: 493px;
+            border:none;
+            background: #1AB58F;
+            box-shadow: 0px 10px 20px rgba(11, 68, 90, 0.16);
+            border-radius: 10px;
+          }
+          .stethescopeinput-button-stop
+          {
+            box-sizing: border-box;
+            position: absolute;
+            width: 241.93px;
+            height: 54px;
+            left: 265px;
+            top: 493px;
+
+            background: #FFFFFF;
+            border: 1px solid #1AB58F;
+            box-shadow: 0px 10px 20px rgba(11, 68, 90, 0.16);
+            border-radius: 10px;
+          }
+        
           .stethescopeinput-left-green{
             position: absolute;
             width: 809px;
@@ -166,19 +256,19 @@ const DSSysAndDiaResult = (props) => {
           }
           .stethescopeinput-text01 {
             position: absolute;
-width: 151px;
-height: 19px;
-left: 638px;
-top: 244px;
+            width: 151px;
+                height: 19px;
+                left: 638px;
+                top: 244px;
 
-font-family: 'Manrope';
-font-style: normal;
-font-weight: 600;
-font-size: 14px;
-line-height: 19px;
-text-align: center;
+                font-family: 'Manrope';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 19px;
+                text-align: center;
 
-color: #1AB58F;
+                color: #1AB58F;
           }
           .stethescopeinput-text02 {
             top: 486px;
@@ -384,4 +474,4 @@ color: #1AB58F;
   )
 }
 
-export default DSSysAndDiaResult
+export default  AllTestResult;

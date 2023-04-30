@@ -1,4 +1,57 @@
+           .sp-o2-line{
+            position: absolute;
+            width: 130px;
+            height: 25.5px;
+            left: 20px;
+            top: 68px;
+           }
+           
+           .sp-o2-stop-result-bottom{
+            position: absolute;
+            width: 32px;
+            height: 40px;
+            left: 60px;
+            top: 90px;
 
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 42px;
+            line-height: 87px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+
+            color: #1AB58F;
+           }
+          .sp-o2-stop-result-top{
+            position: absolute;
+            width: 32px;
+            height: 40px;
+            left: 64px;
+            top: 20px;
+
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 42px;
+            line-height: 87px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+
+            color: #1AB58F;
+          }
+          .sp-o2stop-sp02-text{
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 19px;
+            text-align: right;
+            color: #263540;
+          }
+       
           .sp-o2stop-container {
             width: 100%;
             height: 600px;
@@ -70,7 +123,7 @@
           }
           .sp-o2stop-text {
             left: 0px;
-            color: #1ab58f;
+            color: #263540;
             right: 0px;
             width: 45px;
             bottom: 19px;
@@ -82,9 +135,10 @@
             font-weight: 600;
           }
           .sp-o2stop-text1 {
-            top: 36px;
-            left: 23px;
-            color: rgb(26, 181, 143);
+            top: 40px;
+            left: 32px;
+            /* color: rgb(26, 181, 143); */
+            color: #263540;
             position: absolute;
             font-size: 10px;
             font-style: normal;
@@ -93,16 +147,17 @@
           .sp-o2stop-text5 {
             top: 110px;
             left: 35px;
-            color: rgb(26, 181, 143);
+            color: #263540;
             position: absolute;
             font-size: 10px;
             font-style: normal;
             font-weight: 400;
+            
           }
           .sp-o2stop-text6 {
             top: 110px;
-            left: 102px;
-            color: rgb(26, 181, 143);
+            left: 110px;
+            color: #263540;
             position: absolute;
             font-size: 10px;
             font-style: normal;
@@ -110,8 +165,8 @@
           }
           .sp-o2stop-text7 {
             top: 44px;
-            left: 104px;
-            color: rgb(26, 181, 143);
+            left: 112px;
+            color: #263540;
             position: absolute;
             font-size: 10px;
             font-style: normal;

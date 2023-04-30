@@ -4,7 +4,7 @@ import bpSensor from "../sensors/BloodpSensor.js";
 import glSensor from "../sensors/GlucoseSensor.js";
 import tpSensor from "../sensors/TemperatureSensor.js";
 import hrSensor from "../sensors/HeartRateSensor.js";
-// import dsSensor from "../sensors/DigitalStetoscopeSensor.js";
+import dsSensor from "../sensors/DigitalStetoscopeSensor.js";
 const SensorRouter = Router();
 import {Server} from "socket.io";
 import UserSchema from "../Models/User.js"

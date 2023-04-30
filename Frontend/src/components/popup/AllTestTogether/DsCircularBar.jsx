@@ -9,9 +9,20 @@ const CircularBarResult = (props) => {
       <div className="stethescopeinput-container">
         <div className="stethescopeinput-container1">
           <Header rootClassName="header-root-class-name21"></Header>
-          <div className='circular-progressbar'>
-            <span className='circular-progressbar-text'>{props.data}<span className='circular-progressbar-text-sign'>{props.sign}</span></span>
-          </div>     
+           
+           <div className='circular-progressbar-3'>
+           </div>
+          <div className='circular-progressbar-2'>
+          </div>
+          <div className='circular-progressbar-1'>
+          </div>
+            <span className='circular-progressbar-text'>Listening</span>
+          
+
+         
+         
+          
+         
           <button className="stethescopeinput-button button">
           <img
             alt="image"
@@ -20,24 +31,34 @@ const CircularBarResult = (props) => {
           />
           </button>
          
-          <button className="circular-progressbar-stop-button">
-             Stop test
+          <button className="ds-circular-progressbar-stop-button" onClick={props.onStopClick }>
+            <span className="ds-circular-progressbar-stop-button-text" 
+            >Stop </span> 
           </button>
-          <button className="circular-progressbar-result-button">
-          Show results
-          </button>
+         
 
 
         </div>
       </div>
       <style jsx>
         {`
+        .ds-circular-progressbar-stop-button-text{
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 22px;
+            text-align: center;
+
+            color: #FFFFFF;
+        }
         .circular-progressbar-result-button{
             position: absolute;
                 width: 240px;
                 height: 54px;
                 left: 519px;
                 top: 493px;
+                
                 font-family: 'Manrope';
                 font-style: normal;
                 font-weight: 700;
@@ -51,26 +72,24 @@ const CircularBarResult = (props) => {
                 box-shadow: 0px 10px 20px rgba(11, 68, 90, 0.16);
                 border-radius: 10px;
         }
-          .circular-progressbar-stop-button
+          .ds-circular-progressbar-stop-button
           {
+            background-color:rgba(218, 85, 85, 1);
             position: absolute;
-            width: 241.93px;
+            width: 160px;
             height: 54px;
-            left: 265px;
-            top: 493px;
+            left: 422.23px;
+            top: 489px;
             font-family: 'Manrope';
             font-style: normal;
             font-weight: 600;
             font-size: 16px;
             line-height: 22px;
-            /* identical to box height */
-
             text-align: center;
-
-            color: #1AB58F;
-            background: #FFFFFF;
-            border: 1px solid #1AB58F;
-            box-shadow: 0px 10px 20px rgba(11, 68, 90, 0.16);
+            border:none;
+            color: #FFFFFF
+            background-colour: rgba(218, 85, 85, 1)
+            box-shadow: 0px 10px 20px rgba(36, 99, 14, 0.16);
             border-radius: 10px;
           }
          .circular-progressbar-text-sign{
@@ -85,22 +104,51 @@ const CircularBarResult = (props) => {
          } 
         .circular-progressbar-text
         {
-            {/* position: absolute; */}
-            {/* width: 80px;
-            height: 87px; */}
-            {/* left: 462px;
-            top: 238px; */}
-
+            position: absolute;
+            width: 142px;
+            height: 44px;
+            left: 431px;
+            top: 259px;
             font-family: 'Manrope';
             font-style: normal;
             font-weight: 600;
-            font-size: 64px;
-            line-height: 87px;
-            margin-left:32px;
+            font-size: 32px;
+            line-height: 44px;
+            /* identical to box height */
+
+            display: flex;
+            align-items: center;
+            text-align: center;
+
             color: #1AB58F;
          }
+         .circular-progressbar-3{
+          
+            box-sizing: border-box;
 
-        .circular-progressbar
+            position: absolute;
+            width: 335px;
+            height: 334px;
+            left: 335px;
+            top: 119px;
+
+            border-radius:170px;
+            opacity: 0.1;
+            border: 1px solid #47C3A4;
+         }
+         .circular-progressbar-2{
+            box-sizing: border-box;
+            position: absolute;
+            width: 295px;
+            height: 294px;
+            left: 355px;
+            top: 139px;
+            border-radius:148px;
+            opacity: 0.4;
+            
+            border: 1px solid #1AB58F;
+         }
+        .circular-progressbar-1
         {
             box-sizing: border-box;
 

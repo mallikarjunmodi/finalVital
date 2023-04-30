@@ -1,7 +1,7 @@
 import React from 'react'
 import "./style/heartRateExisting.css"
 import  { useEffect, useState } from 'react';
-import Header from '../components/HeaderBar'
+import Header from '../components/HeaderBar';
 import Bp2_Pop from "../components/Bp2Pop";
 import BpStartPopUp from "../components/popup/AllTestSeperate/BpStart";
 import HeartRateEndPopUp from "../components/popup/AllTestSeperate/HeartRateEndpopup";

@@ -19,7 +19,7 @@ function BloodGlucoseStop(props){
           </div>
           <button className="bg-stop-button button" onClick={props.onExitClick}>Exit</button>
           <div className="bg-stop-container2">
-          <CircularProgressBar data={props.data}  value={40} />
+          <CircularProgressBar data={props.data}  value={40} type="bg" />
             <span className="bg-stop-text">
               <span>S</span>
               <br></br>

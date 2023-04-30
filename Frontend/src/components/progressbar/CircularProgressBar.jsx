@@ -24,7 +24,7 @@ function CircularProgressBar(props)
   <CircularProgressbar
   
     value={percentage*100/200}
-    text={`${percentage}`}
+    text={props.type!="hr" ? `${percentage}` : null}
     styles={
         buildStyles({
     //   pathColor: `rgba(62, 152, 199, ${percentage / 100})`,

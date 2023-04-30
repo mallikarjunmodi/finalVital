@@ -20,10 +20,10 @@ console.log("props here",props.data);
               }}
             />
           </div>
-          <button className="bp-stop-button button" onClick={props.onStopClick }>Stop</button>
+          <button className="bp-stop-button button" onClick={props.onStopClick}>Stop</button>
           <div className="bp-stop-container2">
           <div >
-         <CircularProgressBar data={props.data} value={40} />
+         <CircularProgressBar data={props.data} value={40} type="bp" />
       </div>
             <span className="bp-stop-text">
               <span>mmHg</span>

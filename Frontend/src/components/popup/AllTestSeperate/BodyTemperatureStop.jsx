@@ -19,7 +19,7 @@ function BodyTemperatureStop(props){
           </div>
           <button className="bd-stop-button button" onClick={props.onStopClick }>Stop</button>
           <div className="bd-stop-container2">
-          <CircularProgressBar data={props.data} value={40} />
+          <CircularProgressBar data={props.data} value={40} type="bt"  />
             <span className="bd-stop-text">
             <span>&#8457;</span>
               <br></br>
