@@ -2,6 +2,8 @@ import React from "react";
 import "./style/allTestPopUpPage.css";
 import Header from "../components/HeaderBar";
 import { useEffect, useState } from "react";
+
+
 // import Bp2_Pop from "../components/Bp2Pop";
 import Bp_1 from "../components/popup/assets/BP_1.png";
 import Bp_2 from "../components/popup/assets/BP_2.svg";
@@ -47,6 +49,7 @@ import DsCircularBar from "../components/popup/AllTestTogether/DsCircularBar";
 import PopUpFrame from "../components/popup/AllTestTogether/PopUpFrame";
 import PopUpFrame2 from "../components/popup/AllTestTogether/PopUpFrame2";
 
+import AllTestResult from "../components/popup/AllTestTogether/AllTestResult";
 
 
 import {
@@ -68,9 +71,11 @@ const AllTestTogetherPopUps = (props) => {
   const [btData, setBtData] = useState(96);
   const [dsData, setDsData] = useState({ sys: 120, dia: 80,pulse: 69});
   const [data, setData] = useState();
-  const [hrData, setHrData] = useState({ sys: 120, dia: 80, pulse: 69 }); 
+  const [hrData, setHrData] = useState({ spo2: 120, hr:92 }); 
   const [popUpSequence, setPopupSequence] = useState("HR_1");
 
+  const navigate = useNavigate();
+  const location=useLocation();
 
   function SensorStop(text) {
     socket.emit(text, { message: "Stop" });
@@ -233,9 +238,27 @@ const AllTestTogetherPopUps = (props) => {
       sign="℉"
       data={btData}
       onExitClick={props.onExitClick}
-      onContinueClick={props.onContinueClick}
+      onContinueClick={()=>{
+        setPopupSequence("All_Result");
+      }}
       />
     );
+    else if (popUpSequence === "All_Result")
+    return (
+      <AllTestResult
+      
+      btdata={btData}
+      hrdata={hrData}
+      bpdata={bpData}
+
+      onExitClick={props.onExitClick}
+      onContinueClick={()=>{
+        navigate("/dashboard");
+      }}
+      />
+    );   
+
+
 
     
     //Digital Stethoscope 

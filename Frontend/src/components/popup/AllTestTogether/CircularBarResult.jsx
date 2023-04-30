@@ -23,7 +23,8 @@ const CircularBarResult = (props) => {
           <button className="circular-progressbar-stop-button">
              Stop test
           </button>
-          <button className="circular-progressbar-result-button">
+          <button className="circular-progressbar-result-button"
+          onClick={props.onContinueClick}>
           Show results
           </button>
 

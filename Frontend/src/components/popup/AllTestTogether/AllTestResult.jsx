@@ -5,7 +5,7 @@ import Phone from "../assets/phone.svg";
 import TryAgain from "../assets/tryagain.svg";
 import Header from '../../HeaderBar';
 import volume from "../assets/volume.svg"
-
+import share from "../assets/shareAllTest.svg"
 const AllTestResult = (props) => {
   return (
     <>
@@ -13,46 +13,49 @@ const AllTestResult = (props) => {
         <div className="stethescopeinput-container1">
           <Header rootClassName="header-root-class-name21"></Header>
           
-          <div className="stethescopeinput-right-green"></div>
-          <div className="stethescopeinput-left-green"></div>
-          <span className="stethescopeinput-text">Check again</span>
-          <span className="stethescopeinput-text01">
-            Your reading is normal.
-          </span>
-          <button className="stethescopeinput-button1 button">
-            Send results
-          </button>
-          <button className="stethescopeinput-button2 button">
-                  Contact doctor
-          </button>
-          <span className="hr-header-text">Test successfully taken! </span>
-          <span className="hr-body-text">Continue to the next test to get your full vitals.</span>
-         <button className="stethescopeinput-button-stop">
+          
+          <div className="all-test-green-back"></div>
+
+        
+
+         <button className="all-test-button-done"
+         onClick={props.onContinueClick}>
          </button>
-          <span className="stethescopeinput-text-stop"> Stop test</span>
-         <button className="stethescopeinput-button-continue">
-         </button>
-           <span className="stethescopeinput-text-continue"> Continue</span>
+           <span className="all-test-text-done"> Done</span>
           
           <span className="stethescopeinput-text04">Heart Rate</span>
           
           <span className="stethescopeinput-text06">BPM</span>
           <span className="stethescopeinput-text07">%</span>
-         
+
+
+
+          <span className="all-test-sys-header">BP-Systolic</span>
+          <span className="all-test-sys-value" >{props.bpdata.sys}</span>
+          <span className="all-test-sys-symbol">mm Hg</span>
+
+          <span className="all-test-dia-header">BP-Diastolic</span>
+          <span className="all-test-dia-value" >{props.bpdata.dia}</span>
+          <span className="all-test-dia-symbol">mm Hg</span>
+
+          <span className="all-test-bt-header">Body Temperature</span>
+          <span className="all-test-bt-value" >{props.btdata}</span>
+          <span className="all-test-bt-symbol">℉</span>
+          <span className="all-test-share-text">Share results</span>
           <span className="stethescopeinput-text11">
-            <span>{props.data.dia}</span>
+            <span>{props.hrdata.hr}</span>
             <br></br>
           </span>
           <span className="stethescopeinput-text14">
-            <span>{props.data.sys}</span>
+            <span>{props.hrdata.spo2}</span>
             <br></br>
           </span>
           <span className="stethescopeinput-text17">SpO2</span>
-          {/* <img
-            src="/playground_assets/rectangle-300h.png"
+          <img
+            src={share}
             alt="image"
-            className="stethescopeinput-image"
-          /> */}
+            className="share-image"
+          />
           <button className="stethescopeinput-button button">
           <img
             alt="image"
@@ -60,27 +63,208 @@ const AllTestResult = (props) => {
             className="stethescopeinput-image1"
           />
           </button>
-          
-          <img
-            src={MailGreen}
-            alt="image"
-            className="stethescopeinput-image2"
-          />
-          <img
-            src={Phone}
-            alt="image"
-            className="stethescopeinput-image3"
-          />
-          <img
-            src={TryAgain}
-            alt="image"
-            className="stethescopeinput-image4"
-          />
-         
+
         </div>
       </div>
       <style jsx>
         {`
+        .all-test-text-done
+        {
+            position: absolute;
+            width: 181.57px;
+            height: 24px;
+            left: 424.09px;
+            top: 508px;
+
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 22px;
+            text-align: center;
+
+            color: #FFFFFF;
+        }
+
+        .all-test-button-done
+        { 
+            position: absolute;
+            width: 240px;
+            height: 54px;
+            left: 398px;
+            top: 493px;
+            background: #285BF4;
+            border:none;
+                box-shadow: 0px 10px 20px rgba(11, 68, 90, 0.16);
+                border-radius: 10px;
+
+        }
+        .share-image
+        {
+            position: absolute;
+            left: 430px;
+            top: 390px;
+        }
+        .all-test-share-text
+        {
+        position: absolute;
+        width: 153px;
+        height: 33px;
+        left: 471px;
+        top: 388px;
+        font-family: 'Manrope';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 33px;
+        color: #285BF4;
+          }
+         .all-test-green-back{
+            position: absolute;
+            width: 809px;
+            height: 322px;
+            left: 114px;
+            top: 131px;
+
+            background: #1AB58F;
+            opacity: 0.05;
+            border-radius: 10px;
+         }
+        .all-test-bt-value{
+            position: absolute;
+            width: 74px;
+            height: 82px;
+            left: 720px;
+            top: 260px;
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 60px;
+            line-height: 82px;
+            /* identical to box height */
+            color: #1AB58F;
+        }
+        .all-test-bt-header{
+            position: absolute;
+            width: 119px;
+            height: 19px;
+            left: 720px;
+            top: 240px;
+
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 19px;
+
+            color: #727272;
+        }
+        .all-test-bt-symbol{
+            position: absolute;
+            width: 15px;
+            height: 19px;
+            left: 720px;
+            top: 340px;
+
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 19px;
+
+            color: #1AB58F;
+        }
+        .all-test-dia-symbol{
+            position: absolute;
+            width: 46px;
+            height: 19px;
+            left: 560px;
+            top: 340px;
+
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 19px;
+
+            color: #1AB58F;
+        }
+        .all-test-dia-value{
+            position: absolute;
+            width: 75px;
+            height: 82px;
+            left: 560px;
+            top: 260px;
+
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 60px;
+            line-height: 82px;
+            /* identical to box height */
+
+
+            color: #1AB58F;
+        }
+        .all-test-dia-header{
+            position: absolute;
+            width: 79px;
+            height: 19px;
+            left: 560px;
+            top: 240px;
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 19px;
+            color: #727272
+        }
+         .all-test-sys-symbol{
+            position: absolute;
+            width: 46px;
+            height: 19px;
+            left: 410px;
+            top: 340px;
+            
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 19px;
+
+            color: #1AB58F;
+         }
+         .all-test-sys-value{
+            position: absolute;
+            width: 100px;
+            height: 82px;
+            left: 410px;
+            top: 260px;
+
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 60px;
+            line-height: 82px;
+            /* identical to box height */
+
+
+            color: #1AB58F;
+         }
+         .all-test-sys-header{
+            position: absolute;
+            width: 77px;
+            height: 19px;
+            left: 420px;
+            top: 240px;
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 19px;
+
+            color: #727272;
+         }
           .hr-body-text{
             position: absolute;
             width: 513px;
