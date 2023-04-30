@@ -205,7 +205,7 @@ const AllTestTogetherPopUps = (props) => {
           setPopupSequence("BT_FETCH");
           
           SensorRead((data)=>{
-            setBtData(data);
+            setBtData({sys:data.sis, dia:data.dia});
              if(data.state==="end")
              {
               setPopupSequence("BT_Reading")
@@ -506,6 +506,7 @@ const AllTestTogetherPopUps = (props) => {
         onContinueClick={() => {
           setPopupSequence("BP_Fetch");
           SensorRead((data)=>{
+            console.log("data",data);
             setBpData(data);
              if(data.state==="end")
              {

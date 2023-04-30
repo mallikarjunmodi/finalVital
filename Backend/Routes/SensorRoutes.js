@@ -87,13 +87,14 @@ SensorRouter.post('/bpsensor', async(req, res) =>
 {
   try{
     
-    // let { _idUser,type,value,} =req.body;
+    console.log("bpSensor req",req.body);
+    let {type,value,} =req.body;
   
     const realm = new Realm({
       path: "testDatabase",
       schema: [UserSchema,SensorSchema],
     });
-    console.log("realm",realm);
+    // console.log("sensor value", type,value);
       
       
     let newSensorReading ; 

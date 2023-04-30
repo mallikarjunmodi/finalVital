@@ -350,7 +350,7 @@ const LastReadingsNew = (props) => {
           }
           .last-readings-root-class-name {
             top: 370px;
-            left: 32px;
+            left: 10px;
             position: absolute;
           }
           .last-readings-root-class-name1 {

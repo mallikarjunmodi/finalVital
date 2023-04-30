@@ -5,88 +5,79 @@ var portName = process.argv[7];
 //remove all the sngle comment while sensore there
 
 
-// export const port = new SerialPort({
-//     path: "COM4",
-//     baudRate: 115200
+ const port = new SerialPort
+({
+    path: "COM4",
+    baudRate: 115200
     
-//   })
+  })
+  const command = ["0XBE", "0XB0", "0X01", "0Xc0", "0X36"];
+
 
 class BpSensor {
-    constructor(n) {
    
-    // this.port=null;
-    }
-    initateSensor() {
-        console.log("initSensor");
-        // this.port = new SerialPort({
-        //     path: "COM4",
-        //     baudRate: 115200
-            
-        //   });
-        // const command = ["0XBE", "0XB0", "0X01", "0Xc0", "0X36"];
- 
-
-        // port.write( command , function (err) {
-        //   if (err) {
-        //     return console.log("Error on write: ", err.message);
-        //   }
-        //   console.log("message written");
-        //   //console.log("ha",data);
-        // });
-    }
+    
     onSensor(callback){
-        this.initateSensor();
+
+        console.log("initSensor");
+ 
+        port.write(command)
+
         console.log("onSensor");
-        // port.on('data', async function(data) {
-        //     console.log("data",Buffer.from(data,'base64').toString());
-        //     console.log("data",data.toString("hex"));
-        //     const readings={
-        //       sis:data[4],
-        //       dia:data[5],
-        //       hrate:data[6],
-        //       state:data[2]===5 ? "end" :data[2]===2 ? "start" : "continue"
-        //     }
-        //     //  const readings={
-        //     //   sis:100,
-        //     //   dia:20,
-        //     //   hrate:30,
-        //     //   state:"end"
-        //     // }
+        port.on('data', async function(data) {
+            //console.log("data",Buffer.from(data,'base64').toString());
+            console.log("data",data.toString("hex"));
+            const readings={
+              sis:data[4],
+              dia:data[5],
+              hrate:data[6],
+              state:data[2]===5 ? "end" :data[2]===2 ? "start" : "continue"
+            }
+            //  const readings={
+            //   sis:100,
+            //   dia:20,
+            //   hrate:30,
+            //   state:"end"
+            // }
             
-        //     console.log("data",readings);
+            //console.log("data",readings);
             
-        //     callback(readings);
+            callback(readings);
             
-        //     const statusCode=parseInt(data[2],16);
+            const statusCode=parseInt(data[2],16);
         
-        //     if(data[2] == 5)
-        //    {
-        //       buffer.push(data);
+            if(data[2] == 5)
+           {
+            //   buffer.push(data);
               
-        //       port.emit("end")
+              port.emit("end")
           
-        //     // realm.write(() => {
-        //     //     sensor1 = realm.create("SensorSchema", {
-        //     //         _id:1234,
-        //     //         name: "bp",
-        //     //         value : value,
-        //     //   });
+            // realm.write(() => {
+            //     sensor1 = realm.create("SensorSchema", {
+            //         _id:1234,
+            //         name: "bp",
+            //         value : value,
+            //   });
                 
-        //     //});
-        //     }
-        //     if(data[2] == 5)
-        //     port.close();
+            //});
+            }
+            if(data[2] == 5)
+            port.close();
+            console.log("port closed");
              
-        //       // for(i=0;i<data)
-        //       // console.log("cuff pressure "+ data[5]*2 + ", sys =" + data[6] + ", dia = " + data[8] )
+              // for(i=0;i<data)
+              // console.log("cuff pressure "+ data[5]*2 + ", sys =" + data[6] + ", dia = " + data[8] )
               
-        //     })
-    } 
+            })
 
-    offSensor(){
-        console.log("offSensor");
-    }
 
+
+ } 
+
+ offSensor(){
+    port.close();
+}
+    
 
   }
   
