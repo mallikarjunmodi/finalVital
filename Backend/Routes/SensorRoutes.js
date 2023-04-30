@@ -88,8 +88,12 @@ SensorRouter.post('/bpsensor', async(req, res) =>
   try{
     
     console.log("bpSensor req",req.body);
+    let sys=req.body.sis;
+    let dia=req.body.dia;
+    let pulse=req.body.pulse;
+
     let {type,value,} =req.body;
-  
+    // let dataValue=
     const realm = new Realm({
       path: "testDatabase",
       schema: [UserSchema,SensorSchema],
@@ -97,19 +101,42 @@ SensorRouter.post('/bpsensor', async(req, res) =>
     // console.log("sensor value", type,value);
       
       
-    let newSensorReading ; 
+    let newSensorReadingSys,newSensorReadingDia,newSensorReadingHr ; 
     realm.write(() => {
-        newSensorReading= realm.create("sensorschema", {
+        newSensorReadingSys= realm.create("sensorschema", {
             _id:uuidv4(),
             _idUser:"2",
-            type:"bp",
-            value:567,
+            type:"sys",
+            value:100,
             timestamp: new Date()
       });}
     )
-       console.log("newSensorReading",newSensorReading);
-       const id = newSensorReading.value;
-       console.log(id); 
+       console.log("newSensorReadingSys",newSensorReadingSys);
+
+       realm.write(() => {
+        newSensorReadingDia= realm.create("sensorschema", {
+            _id:uuidv4(),
+            _idUser:"2",
+            type:"dia",
+            value:dia,
+            timestamp: new Date()
+      });}
+    )
+    console.log("newSensorReadingDia",newSensorReadingDia);
+    
+    realm.write(() => {
+      newSensorReadingHr= realm.create("sensorschema", {
+        _id:uuidv4(),
+        _idUser:"2",
+        type:"pulse",
+        value:pulse,
+        timestamp: new Date()
+      });}
+      )
+      console.log("newSensorReadingHr",newSensorReadingHr);
+
+      //  const id = newSensorReading.value;
+      //  console.log(id); 
       return res.status(200).json({msg: "sensor read successfully", data: {data:"here"}, errors: []})
     
     }

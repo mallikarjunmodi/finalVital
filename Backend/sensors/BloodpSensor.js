@@ -28,9 +28,9 @@ class BpSensor {
             //console.log("data",Buffer.from(data,'base64').toString());
             console.log("data",data.toString("hex"));
             const readings={
-              sis:data[4],
+              sys:data[4],
               dia:data[5],
-              hrate:data[6],
+              pulse:data[6],
               state:data[2]===5 ? "end" :data[2]===2 ? "start" : "continue"
             }
             //  const readings={

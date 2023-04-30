@@ -81,7 +81,7 @@ const AllTestTogetherPopUps = (props) => {
     socket.emit(text, { message: "Stop" });
   }
   
-  function SensorRead(callback,text) {
+  function SensorRead(callback,text,url) {
     console.log(callback);
     socket.emit(text[0], { message: "Start" });
   
@@ -92,7 +92,7 @@ const AllTestTogetherPopUps = (props) => {
         console.log("backsend data", data.data);
         let sensorData = data.data;
         api
-          .post(sendBpSensorValue, sensorData, {
+          .post(url, sensorData, {
             headers: {
               "Content-Type": "application/json",
               Accept: "*/*",
@@ -514,7 +514,7 @@ const AllTestTogetherPopUps = (props) => {
              }
               console.log("bpData",bpData)}
 
-              ,["send_message_bp","bp_data"]
+              ,["send_message_bp","bp_data"],sendBpSensorValue
               );
         }}
       />
