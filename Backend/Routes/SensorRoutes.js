@@ -80,8 +80,66 @@ SensorRouter.get('/dashboard',async(req,res)=>
   }
 })
 
+SensorRouter.post('/btsensor', async(req, res) =>
+{
+  try{
+    
+    console.log("btSensor req",req.body);
+  }
+  catch(err)
+  {
 
+  }
 
+})
+SensorRouter.post('/dssensor', async(req, res) =>
+{
+  try{
+    
+    console.log("dsSensor req",req.body);
+  }
+  catch(err)
+  {
+
+  }
+
+})
+SensorRouter.post('/ecgsensor', async(req, res) =>
+{
+  try{
+    
+    console.log("ecgSensor req",req.body);
+  }
+  catch(err)
+  {
+
+  }
+
+})
+SensorRouter.post('/hrsensor', async(req, res) =>
+{
+  try{
+    
+    console.log("hrSensor req",req.body);
+  }
+  catch(err)
+  {
+
+  }
+
+})
+SensorRouter.post('/glsensor', async(req, res) =>
+{
+  try{
+    
+    console.log("glSensor req",req.body);
+  }
+  catch(err)
+  {
+
+  }
+
+})
 
 SensorRouter.post('/bpsensor', async(req, res) =>
 {
@@ -145,6 +203,7 @@ SensorRouter.post('/bpsensor', async(req, res) =>
         return res.status(400).json({errors:[{msg: err.message}]});
     } 
 });
+
 
 SensorRouter.get('/:id',auth,async(req, res) => {
     try{ 

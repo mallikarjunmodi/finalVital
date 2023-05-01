@@ -61,7 +61,8 @@ import {
 } from "react-router-dom";
 import api from "../api";
 import CandleStickGraph from "../components/graphs/CandleStickGraph";
-import { sendBpSensorValue } from "../url/url";
+
+import { sendBpSensorValue,sendEcgSensorValue,sendHrSensorValue,sendBtSensorValue,sendDsSensorValue,sendGlSensorValue} from "../url/url";
 import io from "socket.io-client";
 import useLocalStorageRef from "../hooks/LocalStorage";
 const socket = io.connect("http://localhost:5000");
@@ -212,7 +213,7 @@ const AllTestTogetherPopUps = (props) => {
              }
               console.log("btData",btData)}
 
-              ,["send_message_bt","bt_data"]
+              ,["send_message_bt","bt_data"],sendBtSensorValue
               );
         }
         }
@@ -396,7 +397,7 @@ const AllTestTogetherPopUps = (props) => {
              }
               console.log("dsData",bpData)}
 
-              ,["send_message_ds","ds_data"]
+              ,["send_message_ds","ds_data"],sendDsSensorValue
               );
         }}
       />
@@ -683,7 +684,7 @@ const AllTestTogetherPopUps = (props) => {
              }
               console.log("hrData",hrData)}
 
-              ,["send_message_hr","hr_data"]
+              ,["send_message_hr","hr_data"],sendHrSensorValue
               );
         
         }}

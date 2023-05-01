@@ -12,7 +12,12 @@ export const dashboardFetchSensorValue="/sensor/dashboard";
 
 
 export const sendBpSensorValue="/sensor/bpsensor";
+export const sendBtSensorValue="/sensor/btsensor";
+export const sendGlSensorValue="/sensor/glsensor";
+export const sendDsSensorValue="/sensor/dssensor";
+export const sendHrSensorValue="/sensor/hrsensor";
+export const sendEcgSensorValue="/sensor/ecgsensor";
+
 export const fetchBpSensorDataUrl="/sensor/bpfetchsensor";
 
-export const sendGlSensorValue="/sensor/glsensor";
 export const fetchGlSensorDataUrl="/sensor/glfetchsensor";
