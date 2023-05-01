@@ -1,20 +1,11 @@
-import serialport from 'serialport';
-var SerialPort = serialport.SerialPort;
-var portName = process.argv[7];
-
+// import serialport from 'serialport';
+// var SerialPort = serialport.SerialPort;
+// var portName = process.argv[7];
+import port from './index.js';
 //remove all the sngle comment while sensore there
 
 
-try{
-     const port = new SerialPort({
-    path: "COM4",
-    baudRate: 115200
-    
-  })
-}
-finally{
-    port.close()
-}
+
 
   const command = ["0XBE", "0XB0", "0X01", "0Xc0", "0X36"];
 

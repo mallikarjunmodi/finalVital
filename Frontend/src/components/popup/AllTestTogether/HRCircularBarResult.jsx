@@ -5,6 +5,7 @@ import Header from '../../HeaderBar'
 //import { CircularProgressbar,buildStyles} from 'react-circular-progressbar';
 
 const HRCircularBarResult = (props) => {
+    console.log("props  wewe", props)
   return (
     <>
       <div className="stethescopeinput-container">
@@ -12,10 +13,10 @@ const HRCircularBarResult = (props) => {
           <Header rootClassName="header-root-class-name21"></Header>
           <div className='circular-progressbar'>
           </div>
-            <span className='hr-circular-progressbar-spo2-top'>{props.data.sys}</span>
+            <span className='hr-circular-progressbar-spo2-top'>{props.data.spo2}</span>
             <span className='hr-circular-progressbar-top-left'>SpO2</span>
             <span className='hr-circular-progressbar-top-right'>%</span>
-             <span className='hr-circular-progressbar-spo2-bottom'>{props.data.sys}</span>
+             <span className='hr-circular-progressbar-spo2-bottom'>{props.data.hr}</span>
              <span className='hr-circular-progressbar-bottom-right'>BPM</span>
              <span className='hr-circular-progressbar-bottom-left'>HR</span>
              <img

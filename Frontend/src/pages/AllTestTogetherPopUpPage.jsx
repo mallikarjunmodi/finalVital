@@ -681,7 +681,7 @@ const AllTestTogetherPopUps = (props) => {
             setHrData(data);
              if(data.state==="end")
              {
-              setPopupSequence("HR_Reading")
+              setPopupSequence("HR_Result")
              }
               console.log("hrData",hrData)
               }
@@ -706,7 +706,8 @@ const AllTestTogetherPopUps = (props) => {
     );  
     else if (popUpSequence === "HR_Result")
       return (
-        <HRCircularBarResult  data={hrData}  
+        <HRCircularBarResult  
+        data={hrData}  
         onExitClick={props.onExitClick}
         onContinueClick={() => {
           setPopupSequence("BP_1");

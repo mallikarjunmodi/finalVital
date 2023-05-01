@@ -1,8 +1,9 @@
 
 import { isObjectIdOrHexString } from 'mongoose';
-import serialport from 'serialport';
-var SerialPort = serialport.SerialPort;
-var portName = process.argv[7];
+// import serialport from 'serialport';
+// var SerialPort = serialport.SerialPort;
+// var portName = process.argv[7];
+
 //import SensorSchema from '../Models/SensorSchema.js';
 //var Buffer =  require('buffer/').Buffer;
 
