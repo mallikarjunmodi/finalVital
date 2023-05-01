@@ -16,6 +16,7 @@ import HeartRateExisting from './pages/HeartRateExisting';
 import BodyTemperatureExisting from './pages/BodyTemperatureExisting';
 import BloodGlucoseExisting from './pages/BloodGlucoseExisting';
 import AllTestTogetherPopUpPage from './pages/AllTestTogetherPopUpPage';
+import VideoConf  from './pages/VideoConf';
 function App() {
   return (
     <>
@@ -36,7 +37,7 @@ function App() {
          <Route path='/bloodglucoseexisting' element={<BloodGlucoseExisting/>}/>
          <Route path='/bpfirsttime' element={<BpfirstTime/>}/> 
          <Route path='/AllTestTogether' element={<AllTestTogetherPopUpPage/>}/> 
- 
+         <Route path='/videoconf' element={<VideoConf/>}/> 
             {/* <Route path='/home' element ={<Home />}/>
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} /> */}

@@ -5,12 +5,17 @@ var portName = process.argv[7];
 //remove all the sngle comment while sensore there
 
 
- const port = new SerialPort
-({
+try{
+     const port = new SerialPort({
     path: "COM4",
     baudRate: 115200
     
   })
+}
+finally{
+    port.close()
+}
+
   const command = ["0XBE", "0XB0", "0X01", "0Xc0", "0X36"];
 
 

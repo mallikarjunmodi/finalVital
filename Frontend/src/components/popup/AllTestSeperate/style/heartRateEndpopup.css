@@ -10,13 +10,13 @@
             position: absolute;
             width: 32px;
             height: 40px;
-            left: 60px;
+            left: 75px;
             top: 90px;
 
             font-family: 'Manrope';
             font-style: normal;
             font-weight: 600;
-            font-size: 42px;
+            font-size: 32px;
             line-height: 87px;
             display: flex;
             align-items: center;
@@ -28,13 +28,13 @@
             position: absolute;
             width: 32px;
             height: 40px;
-            left: 64px;
+            left: 75px;
             top: 20px;
 
             font-family: 'Manrope';
             font-style: normal;
             font-weight: 600;
-            font-size: 42px;
+            font-size: 32px;
             line-height: 87px;
             display: flex;
             align-items: center;

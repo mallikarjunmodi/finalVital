@@ -27,13 +27,16 @@ if(diagnosisPage==="Blood Glucose")
 }  
 if(diagnosisPage==="Digital Stethoscope")
 {
-  //  navigate("",{});
+   navigate("/videoconf");
 }  
 if(diagnosisPage==="ECG")
 {
-  //  navigate("/heartrate",{});
+   navigate("/");
 } 
-
+if(diagnosisPage==="ENT")
+{
+   navigate("/videoconf");
+} 
 
 
 
@@ -120,7 +123,7 @@ if(diagnosisPage==="ECG")
         </div>
         <div className="all-tests-container7">
           <button className="all-tests-button6 button" onClick={()=>{
-            setDiagnosisPage(" ")
+            setDiagnosisPage("ENT")
           }}>
             <img
               alt="pastedImage"

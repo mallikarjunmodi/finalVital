@@ -68,11 +68,11 @@ import useLocalStorageRef from "../hooks/LocalStorage";
 const socket = io.connect("http://localhost:5000");
 
 const AllTestTogetherPopUps = (props) => {
-  const [bpData, setBpData] = useState({ sys: 120, dia: 80, pulse: 69 });   // setData({ ...data, sys: event.target.value });
+  const [bpData, setBpData] = useState({ sys: 0, dia: 0, pulse: 0 });   // setData({ ...data, sys: event.target.value });
   const [btData, setBtData] = useState(96);
-  const [dsData, setDsData] = useState({ sys: 120, dia: 80,pulse: 69});
+  const [dsData, setDsData] = useState({ sys: 0, dia: 0,pulse: 0});
   const [data, setData] = useState();
-  const [hrData, setHrData] = useState({ spo2: 120, hr:92 }); 
+  const [hrData, setHrData] = useState({ spo2: 0, hr:0 }); 
   const [popUpSequence, setPopupSequence] = useState("HR_1");
 
   const navigate = useNavigate();
@@ -671,18 +671,20 @@ const AllTestTogetherPopUps = (props) => {
         }
         
 
-        button1={"Next"}
+        button1={"Start"}
         image_main={HR_3}
         onExitClick={props.onExitClick}
         onContinueClick={() => {
           setPopupSequence("HR_FETCH");
           SensorRead((data)=>{
+
             setHrData(data);
              if(data.state==="end")
              {
               setPopupSequence("HR_Reading")
              }
-              console.log("hrData",hrData)}
+              console.log("hrData",hrData)
+              }
 
               ,["send_message_hr","hr_data"],sendHrSensorValue
               );
@@ -694,7 +696,7 @@ const AllTestTogetherPopUps = (props) => {
     return (
       <HR_Fetch
         setinitateTestPopUp={'wear device and press "start".'}
-        data={bpData}
+        data={hrData}
         onExitClick={props.onExitClick}
         onStopClick={() => {
             SensorStop("send_message_hr");

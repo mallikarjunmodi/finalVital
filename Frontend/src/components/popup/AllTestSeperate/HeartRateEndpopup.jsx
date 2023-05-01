@@ -4,6 +4,13 @@ import PropTypes from 'prop-types';
 import CircularProgressBar from '../../progressbar/CircularProgressBar';
 import Spo2Line from "../assets/spo2Line.svg";
 function HeartRateEndpopup(props){
+  let count=0;
+  if(props.spo2)
+  {
+    count=count+20;
+  }
+
+  console.log("props hr",props);
   return (
     <>
       <div className="sp-o2stop-container">
@@ -20,7 +27,7 @@ function HeartRateEndpopup(props){
             Stop
           </button>
           <div className="sp-o2stop-container2">
-          <CircularProgressBar data={props.data} value={40} type="hr"/>
+          <CircularProgressBar data={count} value={40} type="hr"/>
           <span className="sp-o2stop-text">{props.HR_reading}</span>
           {/* <span className="sp-o2stop-text1">
               <br></br>
@@ -30,8 +37,8 @@ function HeartRateEndpopup(props){
             <span className="sp-o2stop-text5">HR</span>
             <span className="sp-o2stop-text6">BPM</span>
             <span className="sp-o2stop-text7">%</span>
-            <span className='sp-o2-stop-result-top'>96</span>
-            <span className="sp-o2-stop-result-bottom">63</span>
+            <span className='sp-o2-stop-result-top'>{props.data.spo2}</span>
+            <span className="sp-o2-stop-result-bottom">{props.data.hr}</span>
             <img className="sp-o2-line" src={Spo2Line} alt="this is an  img" /> 
             <div className="heart__division__bar">
               <span

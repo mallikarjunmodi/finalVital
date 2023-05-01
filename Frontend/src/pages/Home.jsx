@@ -55,7 +55,7 @@ const Home = (props) => {
             src="/playground_assets/pexels-ketut-subiyanto-4307884%201-200h.png"
             className="home-image"
           />
-          <Link to="/allTests" className="home-navlink button">
+          <Link to="/videoconf" className="home-navlink button">
             Connect with Doctor
           </Link>
           <img
