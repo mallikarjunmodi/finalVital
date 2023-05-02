@@ -15,11 +15,11 @@ class BpSensor {
     
     onSensor(callback){
 
-        console.log("initSensor");
+        console.log("initSensorBp");
  
         port.write(command)
 
-        console.log("onSensor");
+        console.log("onSensorBp");
         port.on('data', async function(data) {
             //console.log("data",Buffer.from(data,'base64').toString());
             console.log("data",data.toString("hex"));
@@ -46,8 +46,8 @@ class BpSensor {
            {
             //   buffer.push(data);
               
-              port.emit("end")
-          
+              port.emit("endBp")
+              port.close();
             // realm.write(() => {
             //     sensor1 = realm.create("SensorSchema", {
             //         _id:1234,
@@ -59,7 +59,7 @@ class BpSensor {
             }
             if(data[2] == 5)
             port.close();
-            console.log("port closed");
+            console.log("port closed Bp");
              
               // for(i=0;i<data)
               // console.log("cuff pressure "+ data[5]*2 + ", sys =" + data[6] + ", dia = " + data[8] )
