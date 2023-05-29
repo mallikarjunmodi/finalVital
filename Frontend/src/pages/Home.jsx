@@ -3,9 +3,12 @@ import { useState, useEffect,React } from 'react';
 
 import UpperBar from '../components/UpperBar'
 import LastReadingsNew from '../components/LastReadingsNew'
+import HomeTabs from './HomeTabs';
+import HomeGraph from './HomeGraph';
 import axios from 'axios';
 import api from '../api';
 import { dashboardFetchSensorValue } from '../url/url';
+
 
 
 const Home = (props) => {
@@ -24,7 +27,14 @@ const Home = (props) => {
   return (
     <>
       <div className="home-container">
-        <div className="home-main-body">
+        <div className='home-main-body'>
+          <p className='subhead'>Your Health Score</p>
+          <HomeGraph/>
+          <HomeTabs/>
+        </div>
+
+
+        {/* <div className="home-main-body">
           <div className="home-group1132">
             <span className="home-text">
               <span>Your preferred doctor</span>
@@ -73,7 +83,7 @@ const Home = (props) => {
             src="/playground_assets/pastedimage-970mnk.svg"
             className="home-pasted-image02"
           />
-        </div>
+        </div> */}
         <div className="home-settings-bar">
           <img
             src="/playground_assets/pexels-ketut-subiyanto-4307884%201-200h.png"
@@ -162,6 +172,12 @@ const Home = (props) => {
             align-items: flex-start;
             border-radius: 10px;
             background-color: #ffffff;
+          }
+          .subhead{
+            position: absolute;
+            font-weight: bold;
+            color: #2C2C2C;
+            opacity: 0.3;
           }
           .home-group1132 {
             top: 122px;

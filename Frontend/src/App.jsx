@@ -16,6 +16,7 @@ import HeartRateExisting from './pages/HeartRateExisting';
 import BodyTemperatureExisting from './pages/BodyTemperatureExisting';
 import BloodGlucoseExisting from './pages/BloodGlucoseExisting';
 import AllTestTogetherPopUpPage from './pages/AllTestTogetherPopUpPage';
+import HomeGraph from './pages/HomeGraph';
 import VideoConf  from './pages/VideoConf';
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
          {/* <Route path='/' element={<LoginSetUpPage/>} />    */}
          <Route path='/' element={<UserSelect />} />
           <Route path='/dashboard' element={<Home />} />
+          <Route path='/homegraph' element={<HomeGraph />} />
+
           <Route path='/AllTests' element={<AllTests />} />
          <Route path='/loginForm' element={<LoginForm/>} /> 
          <Route path='/signUpForm' element={<SignUpForm/>} /> 
