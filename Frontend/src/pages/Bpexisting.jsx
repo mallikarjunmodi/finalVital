@@ -109,7 +109,7 @@ function Bpexisting(){
      {initateTestPopUp && <BloodPressurepopup userData={user} onExitClick={()=>setinitateTestPopUp(false)} />}
            {/* {initateTestPopUp && <div className="initate__test__pop__up"><BpStartPopUp setinitateTestPopUp={"wear device and press \"start\"."} onExitClick={()=>setinitateTestPopUp(false)} onContinueClick={()=>setinitateTestPopUp(false)}  /></div>}  */}
           <span className="bpexisting-text" onClick={(e)=>{
-                //  navigate("/dashboard",{state:data}); 
+                 navigate("/dashboard",); 
                  }}>
             <span>&lt;</span>
             <br></br>
