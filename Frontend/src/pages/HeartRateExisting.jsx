@@ -6,17 +6,64 @@ import Bp2_Pop from "../components/Bp2Pop";
 import BpStartPopUp from "../components/popup/AllTestSeperate/BpStart";
 import HeartRateEndPopUp from "../components/popup/AllTestSeperate/HeartRateEndpopup";
 import LineGraph from '../components/graphs/LineGraph';
+import { sendHrSensorValue } from '../url/url';
+import io from 'socket.io-client';
+import useLocalStorageRef from "../hooks/LocalStorage";
+import {Link,Navigate,useNavigate,useParams,useLocation} from "react-router-dom"
+import api from '../api';
+const socket=io.connect("http://localhost:5000");
+
+function SensorStop()
+{
+ socket.emit("send_message_Hr",{message:"Stop"});
+}
+
+function  SensorRead(callback){
+  console.log(callback);
+  socket.emit("send_message_hr",{message:"Start"});
+  
+   socket.on("hr_data",(data)=>{
+     console.log("data: " , data.data);
+     
+     if(data.data.state==="end")
+     {
+       console.log("backsend data",data.data);
+       let sensorData=data.data;
+       api.post(
+         sendHrSensorValue,
+          sensorData,
+          {
+          headers: {
+            "Content-Type":"application/json",
+            "Accept": "*/*",
+           }
+        }).then(res => { 
+             console.log(res.status, res.data)
+             
+        }
+        )
+        .catch(err =>  new Error(err))
+        
+        
+       }
+       callback(data.data);
+     })
+
+       
+}
+
 
 const HeartRatepopup = (props) => {
+  const [hrData,setHrData]=useState([]);
     const [popUpSequence, setPopupSequence] = useState("BP_START");
-          if (popUpSequence === "BP_START") return(<BpStartPopUp setinitateTestPopUp={"Insert finger into the oximeter clip, and press \"start\"."} onExitClick={props.onExitClick} onContinueClick={()=>{setPopupSequence("BP_END")}} />);
+          if (popUpSequence === "BP_START") return(<BpStartPopUp setinitateTestPopUp={"Insert finger into the oximeter clip, and press \"start\"."} onExitClick={props.onExitClick} onContinueClick={()=>{setPopupSequence("BP_END");SensorRead((data)=>{setHrData(data); if(data.state==="end"){setPopupSequence("BP_END")} console.log("hrData",hrData)});}} />);
           else if (popUpSequence === "BP_END") return (<HeartRateEndPopUp onExitClick={props.onExitClick} onContinueClick={props.onContinueClick}  />);
    }
 
 function Heartrate(){
    
     const [initateTestPopUp,setinitateTestPopUp]=useState(false);
-
+    const navigate = useNavigate();
 
 
 
@@ -26,7 +73,9 @@ function Heartrate(){
         <div className="heartrate-container1">
         {initateTestPopUp && <HeartRatepopup onExitClick={()=>setinitateTestPopUp(false)} />}
         {/* {initateTestPopUp && <div className="initate__test__pop__up"><BpStartPopUp setinitateTestPopUp={"Insert finger into the oximeter clip, and press \"start\"."} onExitClick={()=>setinitateTestPopUp(false)}/></div>} */}
-          <span className="heartrate-text">
+          <span className="heartrate-text"onClick={(e)=>{
+                navigate("/dashboard",{});  
+                }}>
             <span>&lt;</span>
             <br></br>
             <br></br>

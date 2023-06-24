@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import {Link,Navigate,useNavigate,useParams,useLocation} from "react-router-dom"
 
 const HomeTabs = () => {
   const [activeTab, setActiveTab] = useState('Upcoming');
-
+  const navigate = useNavigate();
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
@@ -31,14 +32,20 @@ const HomeTabs = () => {
             <p>
                 <span className='time'>At <strong>12:45 PM</strong></span><span className='time'>&emsp;&emsp;&emsp;&emsp;&emsp;in <strong>10 mins</strong></span>
             </p>
-            <button className="join-button">Join</button>
+            <button className="join-button" onClick={(e)=>{
+                 navigate("/videoconf",); 
+                 }}
+            >Join</button>
           </div>
         )}
         {activeTab === 'Consult' && (
           <div className="box consult">
                 <br/>
             <p>Schedule appointment with a doctor for an instant diagnosis.</p>
-            <button className="schedule-button">Schedule appointment</button>
+            <button className="schedule-button" onClick={(e)=>{
+                 navigate("/schedule",); 
+                 }}
+            >Schedule appointment</button>
           </div>
         )}
       </div>

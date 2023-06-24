@@ -18,6 +18,7 @@ import BloodGlucoseExisting from './pages/BloodGlucoseExisting';
 import AllTestTogetherPopUpPage from './pages/AllTestTogetherPopUpPage';
 import HomeGraph from './pages/HomeGraph';
 import VideoConf  from './pages/VideoConf';
+import Schedule from "./pages/appointment/Schedule"
 function App() {
   return (
     <>
@@ -41,6 +42,7 @@ function App() {
          <Route path='/bpfirsttime' element={<BpfirstTime/>}/> 
          <Route path='/AllTestTogether' element={<AllTestTogetherPopUpPage/>}/> 
          <Route path='/videoconf' element={<VideoConf/>}/> 
+         <Route path='/schedule' element={<Schedule/>}/> 
             {/* <Route path='/home' element ={<Home />}/>
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} /> */}
