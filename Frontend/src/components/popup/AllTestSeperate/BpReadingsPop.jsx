@@ -98,6 +98,5 @@ function BpReadingsPop(props){
   )
 }
 
-
-
 export default BpReadingsPop
+

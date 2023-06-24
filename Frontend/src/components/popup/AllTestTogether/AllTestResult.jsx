@@ -115,6 +115,7 @@ const AllTestResult = (props) => {
             text-align: center;
             color: #285BF4;
         }
+        
         .check-again
         { 
             position: absolute;
@@ -516,6 +517,7 @@ const AllTestResult = (props) => {
             min-height: 100vh;
             align-items: center;
             flex-direction: column;
+            // right:-50px;
           }
           .stethescopeinput-container1 {
             top: 0px;
@@ -600,7 +602,7 @@ const AllTestResult = (props) => {
           }
           .stethescopeinput-text07 {
             top: 341px;
-            left: 150px;
+            left: 158px;
             color: #1ab58f;
             position: absolute;
             font-size: 14px;
@@ -631,7 +633,7 @@ const AllTestResult = (props) => {
           }
           .stethescopeinput-text14 {
             top: 268px;
-            left: 146px;
+            left: 152px;
             color: #1ab58f;
             width: 100px;
             height: 82px;
@@ -642,7 +644,7 @@ const AllTestResult = (props) => {
           }
           .stethescopeinput-text17 {
             top: 241px;
-            left: 150px;
+            left: 158px;
             color: #727272;
             bottom: bottom;
             position: absolute;

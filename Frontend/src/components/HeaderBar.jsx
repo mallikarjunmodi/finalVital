@@ -14,14 +14,14 @@ const Header = (props) => {
             width: 1024px;
             height: 32px;
             display: flex;
-            position: relative;
+            position: absolute;
             align-items: flex-start;
             flex-direction: column;
           }
           .header-container1 {
             top: 0px;
             flex: 0 0 auto;
-            right: 0px;
+            // right: 0px;
             width: 1024px;
             height: 32px;
             display: flex;
