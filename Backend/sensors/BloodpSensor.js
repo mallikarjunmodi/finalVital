@@ -3,12 +3,15 @@
 // var portName = process.argv[7];
 import port from './index.js';
 //remove all the sngle comment while sensore there
-
-
-
-
   const command = ["0XBE", "0XB0", "0X01", "0Xc0", "0X36"];
 
+  const ecgoff  = ["0x55", "0xAA" ,"0x04","0x01" ,"0x00", "0xFA"];
+  const spoff  = ["0x55", "0xAA" ,"0x04","0x03" ,"0x00", "0xF8"];
+  const tempoff  = ["0x55", "0xAA" ,"0x04","0x04" ,"0x00", "0xF7"];
+  const nibpoff  = ["0x55", "0xAA"," 0x04", "0x02", "0x00", "0xF9"]
+  const ecgwaveoff  = ["0x55", "0xAA" ,"0x04","0xFB" ,"0x00", "0x00"];
+  const spwaveoff  = ["0x55", "0xAA" ,"0x04","0xFE" ,"0x00", "0xFD"];
+  const respoff  = ["0x55", "0xAA" ,"0x04","0xFF" ,"0x00", "0xFC"];
 
 class BpSensor {
    
@@ -18,6 +21,13 @@ class BpSensor {
         console.log("initSensorBp");
  
         port.write(command)
+        port.write(spoff);
+        port.write(nibpoff);
+        port.write(tempoff);
+        port.write(spwaveoff);
+        port.write(respoff);
+        port.write(ecgoff);
+        port.write(ecgwaveoff);
 
         console.log("onSensorBp");
         port.on('data', async function(data) {
