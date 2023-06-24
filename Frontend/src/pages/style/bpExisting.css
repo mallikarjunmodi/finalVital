@@ -1,4 +1,7 @@
-
+.header-root-class-name4{
+  position: absolute;
+  top: 0;
+}
           .bpexisting-container {
             width: 100%;
             display: flex;

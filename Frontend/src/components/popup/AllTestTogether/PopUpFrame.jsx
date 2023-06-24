@@ -56,6 +56,7 @@ const PopUpFrame = (props) => {
             flex-direction: column;
             justify-content: center;
             background-color: #ffffff;
+            border-radius: 16px;
           }
           .-pinstruction-text {
             top: 47px;

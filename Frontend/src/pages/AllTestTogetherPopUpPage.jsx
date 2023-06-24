@@ -633,7 +633,7 @@ const AllTestTogetherPopUps = (props) => {
       <PopUpFrame
         heading={"How to record Heart Rate & SpO2"}
         instruction={
-          "1.wash your hands with soap and warm water, and dry them thoroughly. "
+          "1. Wash your hands with soap and warm water, and dry them thoroughly. "
         }
         button1={"Next"}
         image_main={HR_1}
