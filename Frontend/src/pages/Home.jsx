@@ -8,8 +8,8 @@ import HomeGraph from './HomeGraph';
 import axios from 'axios';
 import api from '../api';
 import { dashboardFetchSensorValue } from '../url/url';
-import { getMessaging, onMessage } from "firebase/messaging";
-import {messaging,getTokenAsync } from "../Firebase/FirebaseConfig";
+// import { getMessaging, onMessage } from "firebase/messaging";
+// import {messaging,getTokenAsync } from "../Firebase/FirebaseConfig";
 
 const Home = (props) => {
 
@@ -21,36 +21,36 @@ const Home = (props) => {
       .catch(error => console.log(error));
   }, []);
 
-  useEffect(() => {
-    onMessage(messaging, (payload) => {
-      console.log('Message received. ', payload);
-      const notification = new Notification(payload.notification.title, {
-        body: payload.notification.body
-      });
-      console.log('Notification received', notification);
-    });
-  }, []); 
-  async function requestPermission() {
-    try {
-      const permission = await Notification.requestPermission();
-      console.log('Notification permission:', permission);
-      return permission;
-    } catch (error) {
-      console.error('Error getting notification permission:', error);
-      return null;
-    }
-  }
+  // useEffect(() => {
+  //   onMessage(messaging, (payload) => {
+  //     console.log('Message received. ', payload);
+  //     const notification = new Notification(payload.notification.title, {
+  //       body: payload.notification.body
+  //     });
+  //     console.log('Notification received', notification);
+  //   });
+  // }, []); 
+  // async function requestPermission() {
+  //   try {
+  //     const permission = await Notification.requestPermission();
+  //     console.log('Notification permission:', permission);
+  //     return permission;
+  //   } catch (error) {
+  //     console.error('Error getting notification permission:', error);
+  //     return null;
+  //   }
+  // }
   
-  const [permission, setPermission] = useState(null); 
-  useEffect(() => {
-    async function getPermission() {
-      const permission = await requestPermission();
-      setPermission(permission);
-    }
-    getPermission();
+  // const [permission, setPermission] = useState(null); 
+  // useEffect(() => {
+  //   async function getPermission() {
+  //     const permission = await requestPermission();
+  //     setPermission(permission);
+  //   }
+  //   getPermission();
 
     
-  }, []);
+  // }, []);
   
 
 
