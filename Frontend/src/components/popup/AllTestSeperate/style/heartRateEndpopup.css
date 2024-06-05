@@ -79,8 +79,8 @@
           }
           .sp-o2stop-html-node {
             top: 26.83px;
-            left: 35.77px;
-            position: absolute;
+    left: 35.77px;
+    position: absolute;
           }
           .heart__division__bar{
             position: absolute;
@@ -111,14 +111,14 @@
             flex: 0 0 auto;
             left: 389px;
             right: 389px;
-            width: 165px;
-            height: 165px;
+            /* width: 165px; */
+            /* height: 165px; */
             display: flex;
             position: absolute;
             align-items: center;
             border-color: #1ab58f;
-            border-width: 5px;
-            border-radius: 50%;
+            /* border-width: 5px; */
+            /* border-radius: 50%; */
             justify-content: center;
           }
           .sp-o2stop-text {
@@ -135,7 +135,7 @@
             font-weight: 600;
           }
           .sp-o2stop-text1 {
-            top: 40px;
+            top: 46px;
             left: 32px;
             /* color: rgb(26, 181, 143); */
             color: #263540;
@@ -145,8 +145,8 @@
             font-weight: 400;
           }
           .sp-o2stop-text5 {
-            top: 110px;
-            left: 35px;
+            top: 115px;
+            left: 44px;
             color: #263540;
             position: absolute;
             font-size: 10px;
@@ -155,8 +155,8 @@
             
           }
           .sp-o2stop-text6 {
-            top: 110px;
-            left: 110px;
+            top: 115px;
+            left: 106px;
             color: #263540;
             position: absolute;
             font-size: 10px;
@@ -164,8 +164,8 @@
             font-weight: 400;
           }
           .sp-o2stop-text7 {
-            top: 44px;
-            left: 112px;
+            top: 46px;
+            left: 106px;
             color: #263540;
             position: absolute;
             font-size: 10px;
@@ -184,4 +184,13 @@
             font-size: 36px;
             font-style: normal;
             font-weight: 600;
+          }
+
+          .sp-o2-stop-result-top{
+            left: 71px;
+            top: 26px;
+          }
+          .sp-o2-stop-result-bottom{
+            left: 71px;
+            top: 96px;
           }

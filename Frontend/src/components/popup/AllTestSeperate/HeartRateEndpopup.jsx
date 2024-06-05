@@ -1,4 +1,5 @@
 import React from 'react'
+import HeaderBar from '../../HeaderBar'
 import "./style/heartRateEndpopup.css"
 import PropTypes from 'prop-types';
 import CircularProgressBar from '../../progressbar/CircularProgressBar';
@@ -14,8 +15,10 @@ function HeartRateEndpopup(props){
   return (
     <>
       <div className="sp-o2stop-container">
+      {/* <HeaderBar/> */}
+      
         <div className="sp-o2stop-container1">
-          <div className="sp-o2stop-html-node">
+        <div className="sp-o2stop-html-node">
             <span
               dangerouslySetInnerHTML={{
                 __html:

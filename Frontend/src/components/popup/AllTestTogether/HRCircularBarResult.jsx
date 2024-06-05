@@ -20,13 +20,22 @@ const HRCircularBarResult = (props) => {
              <span className='hr-circular-progressbar-bottom-right'>BPM</span>
              <span className='hr-circular-progressbar-bottom-left'>HR</span>
              <img
-            alt="image"
+            alt="line"
             src={spo2line}
             className="spo2-line-image"
           />
+        <div className="heart__division__bar">
+              <span
+                dangerouslySetInnerHTML={{
+                  __html:
+                  '<svg width="2" height="311" viewBox="0 0 2 311" fill="none" xmlns="http://www.w3.org/2000/svg">\r\n <path d="M0.503906 0.226562V49.4193M0.503906 311V264.931" stroke="#313665"/> </svg>',
+                    // '<svg width="2" height="240" viewBox="0 0 2 240" fill="none" xmlns="http://www.w3.org/2000/svg">\r\n    <path d="M1 0V31.5M1 199V169.5" stroke="#313665" />\r\n</svg>',
+                }}
+              />
+            </div>
           <button className="stethescopeinput-button button">
           <img
-            alt="image"
+            alt="volume"
             src={volume}
             className="stethescopeinput-image1"
           />
@@ -50,9 +59,13 @@ const HRCircularBarResult = (props) => {
             position: absolute;
             width: 229.57px;
             height: 25.5px;
-            left: 386.38px;
-            top: 270px;
+            left: 394px;
+            top: 274px;
 
+        }
+        .heart__division__bar{
+          left: 50%;
+          top: 126px;
         }
         .hr-circular-progressbar-bottom-right
         {
@@ -75,7 +88,7 @@ const HRCircularBarResult = (props) => {
             position: absolute;
             width: 19px;
             height: 19px;
-            left: 437px;
+            left: 446px;
             top: 345px;
 
             font-family: 'Manrope';
@@ -107,7 +120,7 @@ const HRCircularBarResult = (props) => {
             position: absolute;
             width: 36px;
             height: 19px;
-            left: 420px;
+            left: 430px;
             top: 237px;
 
             font-family: 'Manrope';
@@ -123,7 +136,7 @@ const HRCircularBarResult = (props) => {
             position: absolute;
             width: 80px;
             height: 87px;
-            left: 461px;
+            left: 492px;
             top: 188px;
             font-family: 'Manrope';
             font-style: normal;
@@ -141,8 +154,8 @@ const HRCircularBarResult = (props) => {
             position: absolute;
                 width: 79px;
                 height: 87px;
-                left: 462px;
-                top: 292px;
+                left: 492px;
+                top: 296px;
             font-family: 'Manrope';
             font-style: normal;
             font-weight: 600;
@@ -229,7 +242,7 @@ const HRCircularBarResult = (props) => {
             position: absolute;
             width: 257.68px;
             height: 257.68px;
-            left: 373.89px;
+            left: 382px;
             top: 157.21px;
             border-radius:175px;
             border: 3px solid #1AB58F;

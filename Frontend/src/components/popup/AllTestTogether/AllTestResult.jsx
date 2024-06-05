@@ -1,8 +1,5 @@
 import React from 'react'
-import MailGreen from "../assets/mailgreen.svg";
-import MailRed from "../assets/mailred.svg";
-import Phone from "../assets/phone.svg";
-import TryAgain from "../assets/tryagain.svg";
+import ai from '../assets/ai.svg';
 import Header from '../../HeaderBar';
 import volume from "../assets/volume.svg"
 import share from "../assets/shareAllTest.svg"
@@ -11,58 +8,76 @@ const AllTestResult = (props) => {
     <>
       <div className="stethescopeinput-container">
         <div className="stethescopeinput-container1">
+        <p className='heading'>Tests successfully taken!</p>
+        <img
+            src={share}
+            alt="share"
+            className="share-image"
+          />
+        <span className="all-test-share-text">Share results</span>
+
           <Header rootClassName="header-root-class-name21"></Header>
           
-          
           <div className="all-test-green-back"></div>
-
+          <div className='diagnosis'></div>
+          <img src={ai} alt='AI' className='ai'></img>
+          <div className='diagnosis-heading'>AI Diagnosis</div>
+          <p className='diagnosis-text'>AI diagnosis on this reading will be shown here for the user. If everything is good, it will say so.</p>
         
 
-         <button className="all-test-button-done"
-         onClick={props.onContinueClick}>
-         </button>
-           <span className="all-test-text-done"> Done</span>
+         <div className='readings'>
           
-          <span className="stethescopeinput-text04">Heart Rate</span>
+          <span className="stethescopeinput-text04" id='reading1'>Heart Rate</span>
           
-          <span className="stethescopeinput-text06">BPM</span>
-          <span className="stethescopeinput-text07">%</span>
+          <span className="stethescopeinput-text06" id='reading3'>BPM</span>
+          <span className="stethescopeinput-text07" id='reading3'>%</span>
 
 
 
-          <span className="all-test-sys-header">BP-Systolic</span>
-          <span className="all-test-sys-value" >{props.bpdata.sys}</span>
-          <span className="all-test-sys-symbol">mm Hg</span>
+          <span className="all-test-sys-header" id='reading1'>BP-Systolic</span>
+          <span className="all-test-sys-value"  id='reading2'>{props.bpdata.sys}</span>
+          <span className="all-test-sys-symbol" id='reading3'>mm Hg</span>
 
-          <span className="all-test-dia-header">BP-Diastolic</span>
-          <span className="all-test-dia-value" >{props.bpdata.dia}</span>
-          <span className="all-test-dia-symbol">mm Hg</span>
+          <span className="all-test-dia-header" id='reading1'>BP-Diastolic</span>
+          <span className="all-test-dia-value"  id='reading2' >{props.bpdata.dia}</span>
+          <span className="all-test-dia-symbol" id='reading3'>mm Hg</span>
 
-          <span className="all-test-bt-header">Body Temperature</span>
-          <span className="all-test-bt-value" >{props.btdata}</span>
-          <span className="all-test-bt-symbol">℉</span>
-          <span className="all-test-share-text">Share results</span>
-          <span className="stethescopeinput-text11">
+          <span className="all-test-bt-header" id='reading1'>Body Temperature</span>
+          <span className="all-test-bt-value"  id='reading2' >{props.btdata}</span>
+          <span className="all-test-bt-symbol" id='reading3'>℉</span>
+          {/* <span className="all-test-share-text">Share results</span> */}
+          <span className="stethescopeinput-text11" id='reading2'>
             <span>{props.hrdata.hr}</span>
             <br></br>
           </span>
-          <span className="stethescopeinput-text14">
+          <span className="stethescopeinput-text14" id='reading2'>
             <span>{props.hrdata.spo2}</span>
             <br></br>
           </span>
-          <span className="stethescopeinput-text17">SpO2</span>
-          <img
+          <span className="stethescopeinput-text17" id='reading1'>SpO2</span>
+          </div>
+          {/* <img
             src={share}
-            alt="image"
+            alt="share"
             className="share-image"
-          />
+          /> */}
           <button className="stethescopeinput-button button">
           <img
-            alt="image"
+            alt="volume"
             src={volume}
             className="stethescopeinput-image1"
           />
           </button>
+
+          <button className="all-test-button-done"
+         onClick={props.onContinueClick}>
+         </button>
+           <span className="all-test-text-done"> Done</span>
+
+           <button className="check-again"
+         onClick={props.onContinueClick}>
+         </button>
+           <span className="check-again-text"> Check again</span>
 
         </div>
       </div>
@@ -73,7 +88,7 @@ const AllTestResult = (props) => {
             position: absolute;
             width: 181.57px;
             height: 24px;
-            left: 424.09px;
+            left: 536px;
             top: 508px;
 
             font-family: 'Manrope';
@@ -85,13 +100,66 @@ const AllTestResult = (props) => {
 
             color: #FFFFFF;
         }
+        .check-again-text
+        {
+            position: absolute;
+            width: 181.57px;
+            height: 24px;
+            left: 278px;
+            top: 508px;
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 22px;
+            text-align: center;
+            color: #285BF4;
+        }
+        
+        .check-again
+        { 
+            position: absolute;
+            width: 240px;
+            height: 54px;
+            left: 250px;
+            top: 493px;
+            background: #FFFFFF;
+            border: solid 1px #285BF4;
+            box-shadow: 0px 10px 20px rgba(11, 68, 90, 0.16);
+            border-radius: 10px;
+
+        }
+
+        .heading{
+          color: #125873;
+          font-weight: 700;
+          font-size: 24px;
+          line-height: 22px;
+          top: 5.5rem;
+          left: 37%;
+          position: absolute;
+
+        }
+
+        #reading1{
+          position: absolute;
+          top: 12rem;
+        }
+        #reading2{
+          position: absolute;
+          top: 14rem;
+        }
+        #reading3{
+          position: absolute;
+          top: 18.5rem;
+        }
 
         .all-test-button-done
         { 
             position: absolute;
             width: 240px;
             height: 54px;
-            left: 398px;
+            left: 510px;
             top: 493px;
             background: #285BF4;
             border:none;
@@ -102,16 +170,16 @@ const AllTestResult = (props) => {
         .share-image
         {
             position: absolute;
-            left: 430px;
-            top: 390px;
+            right: 13rem;
+            top: 5.5rem;
         }
         .all-test-share-text
         {
         position: absolute;
         width: 153px;
         height: 33px;
-        left: 471px;
-        top: 388px;
+        right: 2.8rem;
+        top: 5.2rem;
         font-family: 'Manrope';
         font-style: normal;
         font-weight: 600;
@@ -130,6 +198,42 @@ const AllTestResult = (props) => {
             opacity: 0.05;
             border-radius: 10px;
          }
+
+         .diagnosis{
+          position: absolute;
+            width: 793px;
+            height: 108px;
+            left: 122px;
+            top: 21rem;
+            background: #1AB58F;
+            border-radius: 10px;
+            opacity: 0.3;
+         }
+
+         .ai{
+          position: absolute;
+          top: 22rem;
+          left: 136px;
+         }
+
+         .diagnosis-heading{
+          color: #125873;
+          position: absolute;
+          top: 22.1rem;
+          left: 168px;
+          font-weight: bold;
+          font-size: 14px;
+          // font-family: primary;
+         }
+
+        .diagnosis-text{
+          position: absolute;
+          top: 24rem;
+          left: 138px;
+          color: #348672;
+          font-size: 16px;
+        }
+        
         .all-test-bt-value{
             position: absolute;
             width: 74px;
@@ -413,6 +517,7 @@ const AllTestResult = (props) => {
             min-height: 100vh;
             align-items: center;
             flex-direction: column;
+            // right:-50px;
           }
           .stethescopeinput-container1 {
             top: 0px;
@@ -497,7 +602,7 @@ const AllTestResult = (props) => {
           }
           .stethescopeinput-text07 {
             top: 341px;
-            left: 150px;
+            left: 158px;
             color: #1ab58f;
             position: absolute;
             font-size: 14px;
@@ -528,7 +633,7 @@ const AllTestResult = (props) => {
           }
           .stethescopeinput-text14 {
             top: 268px;
-            left: 146px;
+            left: 152px;
             color: #1ab58f;
             width: 100px;
             height: 82px;
@@ -539,7 +644,7 @@ const AllTestResult = (props) => {
           }
           .stethescopeinput-text17 {
             top: 241px;
-            left: 150px;
+            left: 158px;
             color: #727272;
             bottom: bottom;
             position: absolute;
