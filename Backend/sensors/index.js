@@ -5,7 +5,7 @@ var portName = process.argv[7];
 // import SerialPort from 'serialport';
 
 const port = new SerialPort({
-      path: "COM4",
+      path: "/dev/ttyUSB0",
       baudRate: 115200
       
     })

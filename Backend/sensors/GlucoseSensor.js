@@ -1,6 +1,6 @@
 
 import { isObjectIdOrHexString } from 'mongoose';
-// import port from './serialport';
+ import port from './serialport';
 
 import serialport from 'serialport';
 var SerialPort = serialport.SerialPort;
@@ -8,10 +8,10 @@ var portName = process.argv[7];
 //import SensorSchema from '../Models/SensorSchema.js';
 //var Buffer =  require('buffer/').Buffer;
 
-const port = new SerialPort({
-    path: "COM3",
-    baudRate: 9600
-  })
+//const port = new SerialPort({
+ //   path: "/dev/ttyUSB1",
+ //   baudRate: 9600
+ // })
 
 const command = ["0XBE", "0XB0", "0X01", "0Xc0", "0X36"];
 

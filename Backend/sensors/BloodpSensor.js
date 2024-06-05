@@ -20,7 +20,7 @@ class BpSensor {
 
         console.log("initSensorBp");
  
-        port.write(command)
+     //   port.write(command)
         port.write(spoff);
         port.write(nibpoff);
         port.write(tempoff);
@@ -28,6 +28,7 @@ class BpSensor {
         port.write(respoff);
         port.write(ecgoff);
         port.write(ecgwaveoff);
+        port.write(command);
 
         console.log("onSensorBp");
         port.on('data', async function(data) {
@@ -46,7 +47,7 @@ class BpSensor {
             //   state:"end"
             // }
             
-            //console.log("data",readings);
+            console.log("data",readings);
             
             callback(readings);
             

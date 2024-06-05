@@ -1,7 +1,7 @@
 import {response, Router} from "express";
 // import sensorReadBp from "../sensors/bpSensor.js";
 import bpSensor from "../sensors/BloodpSensor.js";
-import glSensor from "../sensors/GlucoseSensor.js";
+//import glSensor from "../sensors/GlucoseSensor.js";
 import tpSensor from "../sensors/TemperatureSensor.js";
 import hrSensor from "../sensors/HeartRateSensor.js";
 import dsSensor from "../sensors/DigitalStetoscopeSensor.js";
@@ -49,16 +49,19 @@ export default function(httpServer)
       console.log(data.message);
       if(data.message==="Start")
       {
-        glSensor.onSensor((sensorData)=>{
-          socket.emit("gl_data",{data:sensorData})
-        })
+      //  glSensor.onSensor((sensorData)=>{
+      //    socket.emit("gl_data",{data:sensorData})
+      //  })
+      console.log("glucose runnig");
        
       }
       if(data.message==="Stop")
       {
-        glSensor.offSensor((sensorData)=>{
-          socket.emit("gl_data",{data:"Sensor stopped"})
-        })
+        //glSensor.offSensor((sensorData)=>{
+        //  socket.emit("gl_data",{data:"Sensor stopped"})
+  
+     //   })
+        
       }
 
 
